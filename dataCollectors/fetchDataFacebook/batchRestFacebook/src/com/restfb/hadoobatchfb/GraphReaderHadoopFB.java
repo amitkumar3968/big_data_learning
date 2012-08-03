@@ -29,15 +29,16 @@ import com.restfb.types.Url;
 import com.restfb.types.User;
 
 
-public class GraphReaderHadoopFB {
+public class GraphReaderHadoopFB 
+{
+    public static void main(String[] args) 
+    {
 
-  public static void main(String[] args) {
-
-      /* 
+        /* 
          Get you access token from Facebook link below
          https://developers.facebook.com/tools/explorer
-      */
-	  DefaultFacebookClient facebookClient = new DefaultFacebookClient("<<ACCESS_TOKEN_HER>>");
+        */
+        DefaultFacebookClient facebookClient = new DefaultFacebookClient("<<ACCESS_TOKEN_HER>>");
 	  
 	  	out.println("Starting BATCH \n");
 	  
@@ -80,5 +81,5 @@ public class GraphReaderHadoopFB {
 		out.println("\n postResponse \n");
 		out.println(postResponse.getBody());
 		
-  }
+    }
 }

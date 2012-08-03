@@ -81,7 +81,6 @@ public class SequenceFileToHDFS {
 		//get current date time with Date()
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		Date date = new Date();
-				//System.out.println(dateFormat.format(date));  
 
 		String uri = "sequence_file_"+dateFormat.format(date)+".seq";
 		Configuration conf = new Configuration();
@@ -91,12 +90,13 @@ public class SequenceFileToHDFS {
          * Make sure the PATH is set right to get the configuration
          * Which will dump the Sequence file into HADOOP
         */
+        
 		//conf.addResource(new Path ("/usr/local/hadoop/conf/core-site.xml"));
 		//conf.addResource(new Path ("/usr/local/hadoop/conf/hdfs-site.xml"));
 		
         /*Comment these 2 lines below and uncomment above 2 lines to write the data into Hadoop*/
-			FileSystem.getLocal(conf); //for local file system
-			LocalFileSystem fs = FileSystem.getLocal(conf);
+		FileSystem.getLocal(conf); //for local file system
+		LocalFileSystem fs = FileSystem.getLocal(conf);
 		/*Local Sequence End Here*/
         
         /* Uncomment line below to make it work with Configuration file above <Lines 94/95>*/
@@ -106,7 +106,7 @@ public class SequenceFileToHDFS {
 
 		/*
 		 * Starting Facebook Retrieval
-		 */
+		*/
 		
 		DefaultFacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 		User user = facebookClient.fetchObject("me", User.class);
@@ -121,8 +121,7 @@ public class SequenceFileToHDFS {
 
 		/* Executing BATCH Request */ 
 		/* This will be our Sequence Value*/
-		List<BatchResponse> batchResponses =
-			facebookClient.executeBatch(meRequest, meFriendRequest, meLikeRequest);
+		List<BatchResponse> batchResponses = facebookClient.executeBatch(meRequest, meFriendRequest, meLikeRequest);
 
 		/*
 		 * Based on the Response from Facebook 

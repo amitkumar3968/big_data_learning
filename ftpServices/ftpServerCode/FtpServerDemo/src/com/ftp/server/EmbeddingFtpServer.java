@@ -53,15 +53,17 @@ public class EmbeddingFtpServer {
         
 
         // define SSL configuration
-//        System.out.println("Creating SSL");
-//        SslConfigurationFactory ssl = new SslConfigurationFactory();
-//        ssl.setKeystoreFile(new File("ftpserver.jks"));
-//        ssl.setKeystorePassword("password");
-//
-//        // set the SSL configuration for the listener
-//        factory.setSslConfiguration(ssl.createSslConfiguration());
-//        factory.setImplicitSsl(true);
-//        System.out.println("SSL Complete");
+        /* TODO : Is not working yet. Need to work on this. 
+        System.out.println("Creating SSL");
+        SslConfigurationFactory ssl = new SslConfigurationFactory();
+        ssl.setKeystoreFile(new File("ftpserver.jks"));
+        ssl.setKeystorePassword("password");
+
+        // set the SSL configuration for the listener
+        factory.setSslConfiguration(ssl.createSslConfiguration());
+        factory.setImplicitSsl(true);
+        System.out.println("SSL Complete");
+        */
         
         // replace the default listener
         serverFactory.addListener("default", factory.createListener());
@@ -69,7 +71,6 @@ public class EmbeddingFtpServer {
         System.out.println("Adding Users Now");
         PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
         userManagerFactory.setFile(new File("users.properties"));
-        
         
         userManagerFactory.setPasswordEncryptor(new SaltedPasswordEncryptor());
         UserManager userManagement = userManagerFactory.createUserManager();
