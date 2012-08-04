@@ -4,14 +4,14 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="seqFile">
+<project basedir="." default="build" name="sequenceFileGenerator">
     <property environment="env"/>
-    <property name="JRE_LIB" value="../../../../../../usr/lib/jvm/java-6-sun-1.6.0.33/jre/lib/rt.jar"/>
-    <property name="ECLIPSE_HOME" value="../../../../../../usr/local/eclipse"/>
+    <property name="JRE_LIB" value="../../../../../../../../../../Program Files/Java/jre7/lib/rt.jar"/>
+    <property name="ECLIPSE_HOME" value="F:/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
-    <path id="seqFile.classpath">
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="sequenceFileGenerator.classpath">
         <pathelement location="bin"/>
         <pathelement location="${JRE_LIB}"/>
         <pathelement location="lib/activation-1.1.jar"/>
@@ -74,14 +74,12 @@
         <pathelement location="lib/hadoop-common-2.0.0-cdh4.0.1-tests.jar"/>
         <pathelement location="lib/hadoop-common-2.0.0-cdh4.0.1.jar"/>
     </path>
-    <path id="run.SequenceFileToHDFS.classpath">
-        <pathelement location="${JRE_LIB}"/>
-        <path refid="seqFile.classpath"/>
-    </path>
     <target name="init">
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
         </copy>
     </target>
     <target name="clean">
@@ -94,7 +92,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="seqFile.classpath"/>
+            <classpath refid="sequenceFileGenerator.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -110,10 +108,5 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
-    </target>
-    <target name="SequenceFileToHDFS">
-        <java classname="SequenceFileToHDFS" failonerror="true" fork="yes">
-            <classpath refid="run.SequenceFileToHDFS.classpath"/>
-        </java>
     </target>
 </project>
