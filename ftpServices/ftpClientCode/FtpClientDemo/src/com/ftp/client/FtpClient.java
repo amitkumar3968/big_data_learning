@@ -246,7 +246,7 @@ public final class FtpClient {
 
 			if (binaryTransfer) {
 				ftp.setFileType(FTP.BINARY_FILE_TYPE);
-				
+
 			}
 
 			// Use passive mode as default because most of us are
@@ -255,7 +255,7 @@ public final class FtpClient {
 				ftp.enterLocalActiveMode();
 				//ftp.setFileTransferMode(FTP.COMPRESSED_TRANSFER_MODE);
 				System.out.println("Compress Active");
-				
+
 			} else {
 				ftp.enterLocalPassiveMode();
 				//ftp.setFileTransferMode(FTP.COMPRESSED_TRANSFER_MODE);

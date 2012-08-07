@@ -56,7 +56,7 @@ public class SequenceFileToHDFS {
 	private String seqfilesDir;
 	private String hadoopDir;
 	private int id;
-	
+
 	private void setIndexDir(String indexDir) {
 		this.indexDir = indexDir;
 	}
@@ -77,44 +77,44 @@ public class SequenceFileToHDFS {
 	public static void main(String[] args) throws IOException 
 	{
 		String accessToken = "<<ACCESS_TOKEN_HERE>>";
-		
+
 		//get current date time with Date()
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		Date date = new Date();
 
 		String uri = "sequence_file_"+dateFormat.format(date)+".seq";
 		Configuration conf = new Configuration();
-        
-        /*
-         * Uncomment this 2 lines below to get configuratio from the XML
-         * Make sure the PATH is set right to get the configuration
-         * Which will dump the Sequence file into HADOOP
-        */
-        
+
+		/*
+		 * Uncomment this 2 lines below to get configuratio from the XML
+		 * Make sure the PATH is set right to get the configuration
+		 * Which will dump the Sequence file into HADOOP
+		 */
+
 		//conf.addResource(new Path ("/usr/local/hadoop/conf/core-site.xml"));
 		//conf.addResource(new Path ("/usr/local/hadoop/conf/hdfs-site.xml"));
-		
-        /*Comment these 2 lines below and uncomment above 2 lines to write the data into Hadoop*/
+
+		/*Comment these 2 lines below and uncomment above 2 lines to write the data into Hadoop*/
 		FileSystem.getLocal(conf); //for local file system
 		LocalFileSystem fs = FileSystem.getLocal(conf);
 		/*Local Sequence End Here*/
-        
-        /* Uncomment line below to make it work with Configuration file above <Lines 94/95>*/
+
+		/* Uncomment line below to make it work with Configuration file above <Lines 94/95>*/
 		//FileSystem fs = FileSystem.get(URI.create(uri), conf);
-		
-        Path path = new Path(uri);
+
+		Path path = new Path(uri);
 
 		/*
 		 * Starting Facebook Retrieval
-		*/
-		
+		 */
+
 		DefaultFacebookClient facebookClient = new DefaultFacebookClient(accessToken);
 		User user = facebookClient.fetchObject("me", User.class);
 
 		/* 
 		 * Building Batch Request to send to Facebook 
 		 */
-				
+
 		BatchRequest meRequest = new BatchRequestBuilder("me").build();
 		BatchRequest meFriendRequest = new BatchRequestBuilder("me/friends").build();
 		BatchRequest meLikeRequest = new BatchRequestBuilder("me/likes").parameters(Parameter.with("limit", 5)).build();
@@ -128,7 +128,7 @@ public class SequenceFileToHDFS {
 		 * We create Sequence File.
 		 * 
 		 */
-		
+
 		if(batchResponses.get(0).getCode() == 200)
 		{
 			/* Creating Sequence Key */

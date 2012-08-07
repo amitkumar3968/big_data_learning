@@ -31,24 +31,24 @@ import com.restfb.types.User;
 
 public class GraphReaderHadoopFB 
 {
-    public static void main(String[] args) 
-    {
+	public static void main(String[] args) 
+	{
 
-        /* 
+		/* 
          Get you access token from Facebook link below
          https://developers.facebook.com/tools/explorer
-        */
-        DefaultFacebookClient facebookClient = new DefaultFacebookClient("<<ACCESS_TOKEN_HER>>");
-	  
-	  	out.println("Starting BATCH \n");
-	  
-	  	//Building Batch Request to send to Facebook
-	  	out.println("Creating BATCH \n");
+		 */
+		DefaultFacebookClient facebookClient = new DefaultFacebookClient("<<ACCESS_TOKEN_HER>>");
+
+		out.println("Starting BATCH \n");
+
+		//Building Batch Request to send to Facebook
+		out.println("Creating BATCH \n");
 		BatchRequest meRequest = new BatchRequestBuilder("me").build();
 		BatchRequest meFriendRequest = new BatchRequestBuilder("me/friends").build();
 		BatchRequest meLikeRequest = new BatchRequestBuilder("me/likes").parameters(Parameter.with("limit", 5)).build();
-		
-		
+
+
 		//Creating POST Request - Not working yet - moved to GET
 		out.println("Posting Request \n");
 		BatchRequest postRequest = new BatchRequestBuilder("me").method("GET")
@@ -58,28 +58,28 @@ public class GraphReaderHadoopFB
 		out.println("Complete Batch Response \n");
 		List<BatchResponse> batchResponses =
 				facebookClient.executeBatch(meRequest, meFriendRequest, meLikeRequest, postRequest);
-		
-		
+
+
 		//Got Response we can use this information to process further.
 		out.println("\n Response \n");
 		BatchResponse meResponse = batchResponses.get(0);
 		BatchResponse meFriendResponse = batchResponses.get(1);
 		BatchResponse meLikeResponse = batchResponses.get(2);
 		BatchResponse postResponse = batchResponses.get(3);
-		
+
 		out.println("\n *********** Individual Reponse ************* \n");
-		
+
 		out.println("\n meResponse \n");
 		out.println(meResponse.getBody());
-		
+
 		out.println("\n meFriendResponse \n");
 		out.println(meFriendResponse.getBody());
-		
+
 		out.println("\n meLikeResponse Getting 5 (LIMITED) \n");
 		out.println(meLikeResponse.getBody());
-		
+
 		out.println("\n postResponse \n");
 		out.println(postResponse.getBody());
-		
-    }
+
+	}
 }
