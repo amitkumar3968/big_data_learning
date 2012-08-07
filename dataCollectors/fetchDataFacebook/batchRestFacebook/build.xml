@@ -51,7 +51,7 @@
     </target>
     <target name="BatchFB">
         <java classname="com.restfb.hadoobatchfb.GraphReaderHadoopFB" failonerror="true" fork="yes">
-            <arg line="AAACEdEose0cBAJYwAj4FfFrxZCCD0jxy3TySirvh40qr8uWGC2AzdtnUZCSPHvrd4SW0IJuZBBoYCmfsZB1cfiRB5tDsVnFJm2JXuePZAIwZDZD"/>
+            <arg line="<<AccessTokenHere>>"/>
             <classpath refid="hadoopBatchFacebook.classpath"/>
         </java>
     </target>
