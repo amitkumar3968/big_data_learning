@@ -16,26 +16,38 @@ import org.apache.hadoop.util.*;
 /**
  * @author Ahmed
  * 
+ * CSV File will have the given information.
+ * HotelId,	HotelName,		HotelDescription,	HotelAddress,				HotelCustomerReview,	HotelCustomerId,	HotelCustomerRating
+ * 12345,	Hotel Spring,	Bangalore INDIA,	Hotel in Bangalore INDIA,	GOOD Hotel,				1,					5
+ * 
+ * Code is similar to a wordCount Program.
+ * 
+ * All we are doing in "Map" is get Hotel Information (Hotel Name) 
+ * from every line (Object) And get rating from the Line 
+ * and Assign it to the "Collector", 
+ * "Reduce" do will do the rest to combine all the data
+ * 
  */
 
-public class WordCount {
+public class HotelReview {
 
 	public static class Map extends MapReduceBase implements
 			Mapper<LongWritable, Text, Text, IntWritable> {
-		private final static IntWritable one = new IntWritable(1);
-		private Text word = new Text();
+		private final static IntWritable hotelCustomerRating = new IntWritable(1);
+		private Text hotelName = new Text();
 
 		@Override
 		public void map(LongWritable key, Text value,
 				OutputCollector<Text, IntWritable> output, Reporter reporter)
 				throws IOException {
 			String line = value.toString();
-			StringTokenizer tokens = new StringTokenizer(line);
-
-			while (tokens.hasMoreTokens()) {
-				word.set(tokens.nextToken());
-				output.collect(word, one);
-			}
+			String[] lineSplit = line.split(",");
+			StringTokenizer tokens = new StringTokenizer(line,",");
+			
+			hotelName.set(lineSplit[1]);
+			hotelCustomerRating.set(Integer.parseInt(lineSplit[6]));
+		
+			output.collect(hotelName, hotelCustomerRating);
 
 		}
 
@@ -58,8 +70,8 @@ public class WordCount {
 	}
 
 	public static void main(String[] args) throws Exception {
-		JobConf conf = new JobConf(WordCount.class);
-		conf.setJobName("WordCountProgram");
+		JobConf conf = new JobConf(HotelReview.class);
+		conf.setJobName("HotelReviewCode");
 
 		conf.setOutputKeyClass(Text.class);
 		conf.setOutputValueClass(IntWritable.class);

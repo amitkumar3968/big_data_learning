@@ -4,13 +4,13 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="WordCount">
+<project basedir="." default="build" name="HotelReview">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../opt/eclipse"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
-    <path id="WordCount.classpath">
+    <path id="HotelReview.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/hadoop-core-1.0.3.jar"/>
     </path>
@@ -35,7 +35,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="WordCount.classpath"/>
+            <classpath refid="HotelReview.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -53,6 +53,6 @@
         
     </target>
 	<target name="compress" depends="build-eclipse-compiler">
-			<jar destfile="build/wordCount.jar" basedir="bin" />
+			<jar destfile="build/HotelReview.jar" basedir="bin" />
 	</target>
 </project>
