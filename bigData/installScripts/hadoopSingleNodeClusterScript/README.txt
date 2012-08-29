@@ -20,14 +20,19 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+Credits. 
+=================
+1. https://github.com/flexiondotorg - For Java 6 Installation scripts.
+2. http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster
+      - This Script was created using the Installation Guide by Micheal Noll.
+
 hadoopscript
 ============
 Please Readme
 - hadoop script to setup Single Node Cluster - For Hadoop 1.0.3 Only.
 - Tested on Ubuntu 11.10 - Fresh Install.
 - Scripts assumes nothing is installed for Hadoop and installs Required Components for Hadoop to run.
-- This Script was created using the Installation Guide by Micheal Noll.
-http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/    
+   
 
 HOWTO
 -------------------
