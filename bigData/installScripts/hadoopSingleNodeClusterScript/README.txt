@@ -83,6 +83,3 @@ usage: ./initScriptHadoop.sh <single-parameter>
    /initScriptHadoop.sh -c;
    /initScriptHadoop.sh -e;
 4. Add 'hduser' sudoer list to execute the below commands
-5. Execute options -v, -u (OPTIONAL)
-   /initScriptHadoop.sh -v;
-   /initScriptHadoop.sh -u;
