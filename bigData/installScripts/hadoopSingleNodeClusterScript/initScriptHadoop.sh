@@ -71,6 +71,7 @@ usage: $0 <single-parameter>
      ${BLUE_F}--config-update, -c${NORM}${BOLD}        Update Configuration with default values (Single Node) in core-site.xml, mapred-site.xml, hdfs-site.xml.
      ${BLUE_F}--update-hadoop-env, -e${NORM}${BOLD}    Update Hadoop Env Script with JAVA_HOME.
      ${BLUE_F}--install-pig, -p${NORM}${BOLD}          Install Pig in /usr/local Directory and set .bashrc.
+     ${BLUE_F}--install-mahout, -m${NORM}${BOLD}       Install Mahout in /usr/local Directory and set .bashrc.
      ${BLUE_F}--help, -h${NORM}${BOLD}                 Display this Message.
   ${NORM}"
   exit 1
@@ -569,6 +570,78 @@ export PATH=\$PATH:\$PIG_HOME/bin" >> $HOME/.bashrc
  
 }
 
+install_mahout()
+{
+    # Code to Come here	
+    echo -e "${BOLD}${RED_F} --- Install Mahout for Hadoop --- ${SET_JAVA_INSTALL}${NORM}"
+
+    #checking if file exsists 
+    if [ -f $HOME/Downloads/mahout-distribution-0.7.tar.gz ];
+    then
+        echo -e "${BOLD}${RED_F} File Already Downloaded Lets Extract${NORM}"
+    else
+        echo -e "${BOLD}${RED_F} Downloading Mahout from Mirror Now... Saved in $HOME/Downloads ${NORM}"
+        wget http://apache.techartifact.com/mirror/mahout/0.7/mahout-distribution-0.7.tar.gz -P $HOME/Downloads/ 
+    fi    
+
+    # Checking if mahout is Already Installed in /usr/local 
+    # Not checking if mahout is installed elsewhere - will include this check later.
+
+    if [ -d /usr/local/mahout-distribution-0.7 ]
+    then
+        echo -e "${BOLD}${RED_F} Mahout Already installed - if you want to reinstall please remove mahout from /usr/local and Try Again ... ${NORM}"
+        exit 1
+    fi
+
+    # Extract mahout to /usr/local and Change Owner and create a link for our convinence.
+    echo -e "${BOLD}${RED_F} Extract mahout to /usr/local and Change Owner and create a link for our convinence.${NORM}"
+    sudo tar xvzf $HOME/Downloads/mahout-distribution-0.7.tar.gz -C /usr/local
+    
+    sudo chown hduser:hadoop -R /usr/local/mahout-distribution-0.7
+    sudo ln -s /usr/local/mahout-distribution-0.7 /usr/local/mahout
+
+    # Updating .bashrc file
+    echo -e "${BOLD}${RED_F} Updating .bashrc file ${NORM}"
+
+    if [ `grep -c "MAHOUT_HOME" $HOME/.bashrc` -ne 0 ]
+    then
+        echo -e "${BOLD}${RED_F} MAHOUT_HOME Already in $HOME/.bashrc if it has an older configuration then remove it.${NORM}"
+        echo -e "${BOLD}${RED_F} Add the below lines to $HOME/.bashrc in the end. Manually.${NORM}
+
+        # Set MAHOUT_HOME environment variables
+        export MAHOUT_HOME=/usr/local/mahout
+
+        # Add mahout bin/ directory to PATH
+        export PATH=\$PATH:\$MAHOUT_HOME/bin"
+
+        exit 1
+    fi
+
+    echo -n "Would you like update your $HOME/.bashrc ? (y/n)"
+    read SET_BASHRC
+
+    if [ "${SET_BASHRC}" == "y" ]; then
+        echo -e "${BOLD}${RED_F} .bashrc will be backed-up as $HOME/.bashrc-init-update.org ${NORM}"
+        cp $HOME/.bashrc $HOME/.bashrc-init-update.org
+    echo "
+
+# Set MAHOUT_HOME environment variables
+export MAHOUT_HOME=/usr/local/mahout
+
+# Add mahout bin/ directory to PATH
+export PATH=\$PATH:\$MAHOUT_HOME/bin" >> $HOME/.bashrc
+    
+    #source $HOME/.bashrc 
+    #. ~/.bashrc
+    exec bash
+	    echo -e "${BOLD}${RED_F} Added Information to .bashrc ${NORM}"
+    else
+	    echo -e "${BOLD}${RED_F} .bashrc Not Updated ${NORM}"
+    fi
+ 
+}
+
+
 while true ; do
   case "$1" in
     --install-init)
@@ -605,6 +678,10 @@ while true ; do
       install_pig      
       exit 1
       ;;
+    --install-mahout)
+      install_mahout      
+      exit 1
+      ;;
     -h)
       usage
       ;;
@@ -637,6 +714,10 @@ while true ; do
       ;;      
     -p)
       install_pig 
+      exit 1
+      ;;      
+    -m)
+      install_mahout 
       exit 1
       ;;      
     *)

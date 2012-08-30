@@ -54,6 +54,8 @@ usage: ./initScriptHadoop.sh <single-parameter>
      --hostname-update, -u      Update Hostname for the system.
      --config-update, -c        Update Configuration with default values (Single Node) in core-site.xml, mapred-site.xml, hdfs-site.xml.
      --update-hadoop-env, -e    Update Hadoop Env Script with JAVA_HOME.
+     --install-pig, -p          Install Pig in /usr/local Directory and set .bashrc.
+     --install-mahout, -m       Install Mahout in /usr/local Directory and set .bashrc.
      --help, -h                 Display this Message.
 
 1. First Install prerequisites using -i Option
@@ -77,9 +79,19 @@ usage: ./initScriptHadoop.sh <single-parameter>
      Proceed with setup? (y/n)y
 
 2. Login to 'hduser' which will be created in the -i options.
+
 3. Execute options -s, -b, -c, -e 
-   /initScriptHadoop.sh -s;
-   /initScriptHadoop.sh -b;
-   /initScriptHadoop.sh -c;
-   /initScriptHadoop.sh -e;
-4. Add 'hduser' sudoer list to execute the below commands
+   ./initScriptHadoop.sh -s;
+   ./initScriptHadoop.sh -b;
+   ./initScriptHadoop.sh -c;
+   ./initScriptHadoop.sh -e;
+
+Now once the hduser is create add the user to sudoer list.
+
+4. To install Pig and Mahout - will required sudo permissions.
+   ./initScriptHadoop.sh -p; # Install Pig in /usr/local
+   ./initScriptHadoop.sh -m; # Install Mahout in /usr/local
+
+
+
+
