@@ -29,11 +29,16 @@ Steps to Execute Script
 -------------------------------------
 
     1. Download Mahout from : apache.mahout.org
-    2. Download Dataset from http://www.grouplens.org/node/73
-    3. Copy this script to MAHOUT_HOME/examples/bin
-    4. In Mahout home drectory execute : examples/bin/factorize-movielens-1M.sh ~/Downloads/ml-1m/ml-1m/ratings.dat
+    2. Download Dataset from http://www.grouplens.org/node/73 > $HOME/Downloads
 
-My bashrc sample.
+# Set WORK_DIR as per you setup - in the script 
+WORK_DIR=hdfs://localhost:54310/tmp/mahout-work-${USER}
+
+    3. execute : ./factorize-movielens-1M.sh $HOME/Downloads/ml-1m/ml-1m/ratings.dat
+
+
+=======================================
+My $HOME/.bashrc file (sample).
 =======================================
 
 #<bashrc START HERE>
