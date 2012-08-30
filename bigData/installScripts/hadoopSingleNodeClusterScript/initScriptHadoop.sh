@@ -625,8 +625,19 @@ done
 if [ "${INSTALL_INIT}" == "1" ]; then
   echo -e "${BOLD}${RED_F} Welcome to Precofiguration For Hadoop single node setup wizard ${NORM}"
   echo
-  echo -n "Would you like install Java 1.6 ? (y/n) "
+  echo -n "Would you like install Java ? (y/n) "
   read SET_JAVA_INSTALL
+
+#    Setting SET_JAVA_INSTALL_VERSION as "n" Installing Java 1.6 by Default  
+#    SET_JAVA_INSTALL_VERSION="n"
+
+#    if [ $SET_JAVA_INSTALL == "y"]
+#    then
+#        echo -n "Would you like install Java 1.7 (Java 1.6 is default)? (y/n) " 
+#        read SET_JAVA_INSTALL_VERSION
+#    else
+#    fi
+
   echo -n "Would you like to setup user 'hduser' and 'hadoop Group'? (y/n) "
   read SET_HDUSER_HADOOP
 #  if [ $SET_HDUSER_HADOOP == "y" ]; then
@@ -644,7 +655,7 @@ if [ "${INSTALL_INIT}" == "1" ]; then
   echo
   echo -e "${BOLD}${RED_F} Review your choices:${NORM}"
   echo
-  echo -e "${BOLD}${RED_F} Install Java 1.6             : ${SET_JAVA_INSTALL}${NORM}"
+  echo -e "${BOLD}${RED_F} Install Java                 : ${SET_JAVA_INSTALL}${NORM}"
   echo -e "${BOLD}${RED_F} Setup 'hduser' user          : ${SET_HDUSER_HADOOP}${NORM}"
   echo -e "${BOLD}${RED_F} Download Hadoop 1.0.3        : ${SET_HADOOP_DOWNLOAD}${NORM}"
   echo -e "${BOLD}${RED_F} Setup 'hduser' as Owner      : ${SET_HDUSER_OWNER}${NORM}"
@@ -674,11 +685,20 @@ if [ "${SET_JAVA_INSTALL}" == "y" ]; then
     echo -e "${BOLD}${RED_F} Adding Permission to Execute Script... ${NORM}"
     sudo chmod +x oab-java.sh
 
-    echo -e "${BOLD}${RED_F} Executing - Script... ${NORM}"
-    sudo ./oab-java.sh
+#    if ["${SET_JAVA_INSTALL_VERSION}" == "n"];
+#    then
+        echo -e "${BOLD}${RED_F} Executing - Script... ${NORM}"
+        sudo ./oab-java.sh
 
-    echo -e "${BOLD}${RED_F} Download Required Packages... ${NORM}"
-    sudo apt-get install sun-java6-jdk sun-java6-fonts sun-java6-source ssh
+        echo -e "${BOLD}${RED_F} Download Required Packages... ${NORM}"
+        sudo apt-get install sun-java6-jdk sun-java6-fonts sun-java6-source ssh
+#    else
+#        echo -e "${BOLD}${RED_F} Executing - Script... ${NORM}"
+#        sudo ./oab-java.sh -7
+#
+#        echo -e "${BOLD}${RED_F} Download Required Packages... ${NORM}"
+#        sudo apt-get install oracle-java7-jdk oracle-java7-fonts oracle-java7-source ssh 
+#    fi
 
     echo -e "${BOLD}${RED_F} Lets See What is the Java Version we Installed... ${NORM}"
     java -version
