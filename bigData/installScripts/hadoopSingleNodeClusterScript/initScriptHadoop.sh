@@ -476,22 +476,19 @@ hostname_update()
 install_pig()
 {
     # Code to Come here	
-
     echo -e "${BOLD}${RED_F} --- Install Pig for Hadoop --- ${SET_JAVA_INSTALL}${NORM}"
-    cd ~/Downloads
 
     #checking if file exsists 
-
-    if [ -f pig-0.10.0.tar.gz ];
+    if [ -f $HOME/Downloads/pig-0.10.0.tar.gz ];
     then
         echo -e "${BOLD}${RED_F} File Already Downloaded Lets Extract${NORM}"
     else
-        echo -e "${BOLD}${RED_F} Downloading Pig from Mirror Now... ${NORM}"
-        wget http://apache.techartifact.com/mirror/pig/pig-0.10.0/pig-0.10.0.tar.gz 
+        echo -e "${BOLD}${RED_F} Downloading Pig from Mirror Now... Saved in $HOME/Downloads ${NORM}"
+        wget http://apache.techartifact.com/mirror/pig/pig-0.10.0/pig-0.10.0.tar.gz -P $HOME/Downloads/ 
     fi    
 
     # Checking if pig is Already Installed in /usr/local 
-    # I am not checking if pig is installed elsewhere.
+    # Not checking if pig is installed elsewhere - will include this check later.
 
     if [ -d /usr/local/pig-0.10.0 ]
     then
@@ -501,16 +498,15 @@ install_pig()
 
     # Extract pig to /usr/local and Change Owner and create a link for our convinence.
     echo -e "${BOLD}${RED_F} Extract pig to /usr/local and Change Owner and create a link for our convinence.${NORM}"
-    sudo tar xvzf pig-0.10.0.tar.gz -C /usr/local
+    sudo tar xvzf $HOME/Downloads/pig-0.10.0.tar.gz -C /usr/local
     
-    cd /usr/local
-    sudo chown hduser:hadoop -R pig-0.10.0
-    sudo ln -s pig-0.10.0 pig
+    sudo chown hduser:hadoop -R /usr/local/pig-0.10.0
+    sudo ln -s /usr/local/pig-0.10.0 /usr/local/pig
 
     # Updating .bashrc file
     echo -e "${BOLD}${RED_F} Updating .bashrc file ${NORM}"
 
-    if [ `grep -c "PIG_HOME" ~/.bashrc` -ne 0 ]
+    if [ `grep -c "PIG_HOME" $HOME/.bashrc` -ne 0 ]
     then
         echo -e "${BOLD}${RED_F} PIG_HOME Already in $HOME/.bashrc if it has an older configuration then remove it.${NORM}"
         echo -e "${BOLD}${RED_F} Add the below lines to $HOME/.bashrc in the end. Manually.${NORM}
