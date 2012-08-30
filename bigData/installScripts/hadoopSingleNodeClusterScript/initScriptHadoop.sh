@@ -45,6 +45,7 @@ usage: $0 <single-parameter>
      ${BLUE_F}--hostname-update, -u${NORM}${BOLD}      Update Hostname for the system.
      ${BLUE_F}--config-update, -c${NORM}${BOLD}        Update Configuration with default values (Single Node) in core-site.xml, mapred-site.xml, hdfs-site.xml.
      ${BLUE_F}--update-hadoop-env, -e${NORM}${BOLD}    Update Hadoop Env Script with JAVA_HOME.
+     ${BLUE_F}--install-pig, -p${NORM}${BOLD}          Install Pig in /usr/local Directory and set .bashrc.
      ${BLUE_F}--help, -h${NORM}${BOLD}                 Display this Message.
   ${NORM}"
   exit 1
@@ -337,9 +338,9 @@ export PATH=\$PATH:\$HADOOP_HOME/bin" >> $HOME/.bashrc
     #source $HOME/.bashrc 
     #. ~/.bashrc
     exec bash
-	echo -e "${BOLD}${RED_F} Added Information to .bashrc ${NORM}"
+	    echo -e "${BOLD}${RED_F} Added Information to .bashrc ${NORM}"
     else
-	echo -e "${BOLD}${RED_F} .bashrc Not Updated ${NORM}"
+	    echo -e "${BOLD}${RED_F} .bashrc Not Updated ${NORM}"
     fi
 }
 
@@ -472,6 +473,81 @@ hostname_update()
 
 }
 
+install_pig()
+{
+    # Code to Come here	
+
+    echo -e "${BOLD}${RED_F} --- Install Pig for Hadoop --- ${SET_JAVA_INSTALL}${NORM}"
+    cd ~/Downloads
+
+    #checking if file exsists 
+
+    if [ -f pig-0.10.0.tar.gz ];
+    then
+        echo -e "${BOLD}${RED_F} File Already Downloaded Lets Extract${NORM}"
+    else
+        echo -e "${BOLD}${RED_F} Downloading Pig from Mirror Now... ${NORM}"
+        wget http://apache.techartifact.com/mirror/pig/pig-0.10.0/pig-0.10.0.tar.gz 
+    fi    
+
+    # Checking if pig is Already Installed in /usr/local 
+    # I am not checking if pig is installed elsewhere.
+
+    if [ -d /usr/local/pig-0.10.0 ]
+    then
+        echo -e "${BOLD}${RED_F} Pig Already installed - if you want to reinstall please remove pig from /usr/local and Try Again ... ${NORM}"
+        exit 1
+    fi
+
+    # Extract pig to /usr/local and Change Owner and create a link for our convinence.
+    echo -e "${BOLD}${RED_F} Extract pig to /usr/local and Change Owner and create a link for our convinence.${NORM}"
+    sudo tar xvzf pig-0.10.0.tar.gz -C /usr/local
+    
+    cd /usr/local
+    sudo chown hduser:hadoop -R pig-0.10.0
+    sudo ln -s pig-0.10.0 pig
+
+    # Updating .bashrc file
+    echo -e "${BOLD}${RED_F} Updating .bashrc file ${NORM}"
+
+    if [ `grep -c "PIG_HOME" ~/.bashrc` -ne 0 ]
+    then
+        echo -e "${BOLD}${RED_F} PIG_HOME Already in $HOME/.bashrc if it has an older configuration then remove it.${NORM}"
+        echo -e "${BOLD}${RED_F} Add the below lines to $HOME/.bashrc in the end. Manually.${NORM}
+
+        # Set PIG_HOME environment variables
+        export PIG_HOME=/usr/local/pig
+
+        # Add Pig bin/ directory to PATH
+        export PATH=\$PATH:\$PIG_HOME/bin"
+
+        exit 1
+    fi
+
+    echo -n "Would you like update your $HOME/.bashrc ? (y/n)"
+    read SET_BASHRC
+
+    if [ "${SET_BASHRC}" == "y" ]; then
+        echo -e "${BOLD}${RED_F} .bashrc will be backed-up as $HOME/.bashrc-init-update.org ${NORM}"
+        cp $HOME/.bashrc $HOME/.bashrc-init-update.org
+    echo "
+
+# Set PIG_HOME environment variables
+export PIG_HOME=/usr/local/pig
+
+# Add Pig bin/ directory to PATH
+export PATH=\$PATH:\$PIG_HOME/bin" >> $HOME/.bashrc
+    
+    #source $HOME/.bashrc 
+    #. ~/.bashrc
+    exec bash
+	    echo -e "${BOLD}${RED_F} Added Information to .bashrc ${NORM}"
+    else
+	    echo -e "${BOLD}${RED_F} .bashrc Not Updated ${NORM}"
+    fi
+ 
+}
+
 while true ; do
   case "$1" in
     --install-init)
@@ -504,6 +580,10 @@ while true ; do
     --help)
       usage
       ;;
+    --install-pig)
+      install_pig      
+      exit 1
+      ;;
     -h)
       usage
       ;;
@@ -532,6 +612,10 @@ while true ; do
       ;;
     -e)
       update_hadoop_env
+      exit 1
+      ;;      
+    -p)
+      install_pig 
       exit 1
       ;;      
     *)
