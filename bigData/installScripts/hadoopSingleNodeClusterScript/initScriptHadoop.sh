@@ -786,7 +786,11 @@ fi
 if [ "${SET_JAVA_INSTALL}" == "y" ]; then
     echo -e "${BOLD}${RED_F} Install Java 1.6                  : ${SET_JAVA_INSTALL}${NORM}"
     echo -e "${BOLD}${RED_F} Downloading Java Script Now... ${NORM}"
-    wget https://raw.github.com/flexiondotorg/oab-java6/master/oab-java.sh
+    #
+    # Original Path to Script 
+    # wget https://raw.github.com/flexiondotorg/oab-java6/master/oab-java.sh
+    # Setting Path to MyForked Script in GIT
+    wget https://raw.github.com/zubayr/oab-java6/master/oab-java.sh
 
     echo -e "${BOLD}${RED_F} Adding Permission to Execute Script... ${NORM}"
     sudo chmod +x oab-java.sh
