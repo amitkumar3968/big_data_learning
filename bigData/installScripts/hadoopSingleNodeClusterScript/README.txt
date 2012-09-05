@@ -86,6 +86,10 @@ usage: ./initScriptHadoop.sh <single-parameter>
    ./initScriptHadoop.sh -c;
    ./initScriptHadoop.sh -e;
 
+3a. Execute below command to Format namenode (First time Namenode needs to be formated)
+
+    hduser@ubuntu:~$ hadoop namenode -format
+
 Now once the hduser is create add the user to sudoer list.
 
 4. To install Pig and Mahout - will required sudo permissions.
