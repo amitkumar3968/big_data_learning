@@ -642,6 +642,7 @@ export PATH=\$PATH:\$MAHOUT_HOME/bin" >> $HOME/.bashrc
 }
 
 
+
 while true ; do
   case "$1" in
     --install-init)
@@ -735,14 +736,13 @@ if [ "${INSTALL_INIT}" == "1" ]; then
   read SET_JAVA_INSTALL
 
 #    Setting SET_JAVA_INSTALL_VERSION as "n" Installing Java 1.6 by Default  
-#    SET_JAVA_INSTALL_VERSION="n"
+    SET_JAVA_INSTALL_VERSION="n"
 
-#    if [ $SET_JAVA_INSTALL == "y"]
-#    then
-#        echo -n "Would you like install Java 1.7 (Java 1.6 is default)? (y/n) " 
-#        read SET_JAVA_INSTALL_VERSION
-#    else
-#    fi
+    if [ $SET_JAVA_INSTALL == "y" ];
+    then
+        echo -n "Would you like install Java 1.7 (Java 1.6 is default)? (y/n) " 
+        read SET_JAVA_INSTALL_VERSION
+    fi
 
   echo -n "Would you like to setup user 'hduser' and 'hadoop Group'? (y/n) "
   read SET_HDUSER_HADOOP
@@ -795,20 +795,20 @@ if [ "${SET_JAVA_INSTALL}" == "y" ]; then
     echo -e "${BOLD}${RED_F} Adding Permission to Execute Script... ${NORM}"
     sudo chmod +x oab-java.sh
 
-#    if ["${SET_JAVA_INSTALL_VERSION}" == "n"];
-#    then
+    if ["${SET_JAVA_INSTALL_VERSION}" == "n"];
+    then
         echo -e "${BOLD}${RED_F} Executing - Script... ${NORM}"
         sudo ./oab-java.sh
 
         echo -e "${BOLD}${RED_F} Download Required Packages... ${NORM}"
         sudo apt-get install sun-java6-jdk sun-java6-fonts sun-java6-source ssh
-#    else
-#        echo -e "${BOLD}${RED_F} Executing - Script... ${NORM}"
-#        sudo ./oab-java.sh -7
-#
-#        echo -e "${BOLD}${RED_F} Download Required Packages... ${NORM}"
-#        sudo apt-get install oracle-java7-jdk oracle-java7-fonts oracle-java7-source ssh 
-#    fi
+    else
+        echo -e "${BOLD}${RED_F} Executing - Script. Installing Java 1.7 ${NORM}"
+        sudo ./oab-java.sh -7
+
+        echo -e "${BOLD}${RED_F} Download Required Packages... ${NORM}"
+        sudo apt-get install oracle-java7-jdk oracle-java7-fonts oracle-java7-source ssh
+    fi
 
     echo -e "${BOLD}${RED_F} Lets See What is the Java Version we Installed... ${NORM}"
     java -version
