@@ -28,7 +28,7 @@
 ##
 ##  Initial Script Verion 0.1a 
 ##  Basic Initialization script To Install Hadoop as Single Node.   
-##  Hadoop 1.0.3 - Java 1.6
+##  Hadoop 1.1.1 - Java 1.6
 ##
 ##
 ##  Created by - Zubair AHMED
@@ -752,7 +752,7 @@ if [ "${INSTALL_INIT}" == "1" ]; then
 #    echo -n "Enter Group: "
 #    read GROUPNAME
 #  fi
-  echo -n "Would you like to download Hadoop 1.0.3 and extract to /usr/local? (y/n) "
+  echo -n "Would you like to download Hadoop 1.1.1 and extract to /usr/local? (y/n) "
   read SET_HADOOP_DOWNLOAD
   echo -n "Would you like to make 'hduser' owner /usr/local/hadoop/ directory? (y/n) "
   read SET_HDUSER_OWNER
@@ -763,7 +763,7 @@ if [ "${INSTALL_INIT}" == "1" ]; then
   echo
   echo -e "${BOLD}${RED_F} Install Java                 : ${SET_JAVA_INSTALL}${NORM}"
   echo -e "${BOLD}${RED_F} Setup 'hduser' user          : ${SET_HDUSER_HADOOP}${NORM}"
-  echo -e "${BOLD}${RED_F} Download Hadoop 1.0.3        : ${SET_HADOOP_DOWNLOAD}${NORM}"
+  echo -e "${BOLD}${RED_F} Download Hadoop 1.1.1        : ${SET_HADOOP_DOWNLOAD}${NORM}"
   echo -e "${BOLD}${RED_F} Setup 'hduser' as Owner      : ${SET_HDUSER_OWNER}${NORM}"
   echo -e "${BOLD}${RED_F} Login to 'hduser'            : ${SET_LOGIN_HDUSER}${NORM}"
   echo
@@ -833,21 +833,21 @@ fi
 
 
 if [ "${SET_HADOOP_DOWNLOAD}" == "y" ]; then
-    echo -e "${BOLD}${RED_F} Download Hadoop 1.0.3             : ${SET_HADOOP_DOWNLOAD}${NORM}"
+    echo -e "${BOLD}${RED_F} Download Hadoop 1.1.1             : ${SET_HADOOP_DOWNLOAD}${NORM}"
     
     #Lets Download Hadoop 
     echo -e "${BOLD}${RED_F} Downloading Hadoop 1.0... ${NORM}"
-    wget http://apache.techartifact.com/mirror/hadoop/common/hadoop-1.0.3/hadoop-1.0.3-bin.tar.gz
+    wget http://apache.techartifact.com/mirror/hadoop/common/hadoop-1.1.1/hadoop-1.1.1-bin.tar.gz
 
     #Extract and Move it to /usr/local
     echo -e "${BOLD}${RED_F} Extracting Hadoop to /usr/local/... ${NORM}"
-    sudo tar -xvzf hadoop-1.0.3-bin.tar.gz -C /usr/local
+    sudo tar -xvzf hadoop-1.1.1-bin.tar.gz -C /usr/local
     echo -e "${BOLD}${RED_F} Creating Symbolic Link Now... ${NORM}"
     cd /usr/local/
-    sudo ln -s hadoop-1.0.3 hadoop
+    sudo ln -s hadoop-1.1.1 hadoop
     sudo mkdir -p /app/hadoop/tmp
     cd -
-    mv hadoop-1.0.3-bin.tar.gz ~/Downloads/.
+    mv hadoop-1.1.1-bin.tar.gz ~/Downloads/.
 fi
 
 
@@ -860,12 +860,12 @@ if [ "${SET_HDUSER_OWNER}" == "y" ]; then
 	    echo -e "${BOLD}${RED_F} Setup 'hduser' as Owner           : ${SET_HDUSER_OWNER}${NORM}"
 	    #Lets Create some Permission for hduser
 	    echo -e "${BOLD}${RED_F} Creating Permission for 'hduser'... ${NORM}"
-	    sudo chown -R hduser:hadoop /usr/local/hadoop-1.0.3
+	    sudo chown -R hduser:hadoop /usr/local/hadoop-1.1.1
         sudo chown -R hduser:hadoop /app/hadoop/
     else
 	    echo -e "'hduser' as Owner Not set - Please do this manually"
-	    echo -e "${BOLD}${RED_F} sudo chown -R <username>:<group> hadoop-1.0.3 ${NORM}"
-	    echo -e "Example: ${BOLD}${RED_F} sudo chown -R hduser:hadoop hadoop-1.0.3 ${NORM}" 
+	    echo -e "${BOLD}${RED_F} sudo chown -R <username>:<group> hadoop-1.1.1 ${NORM}"
+	    echo -e "Example: ${BOLD}${RED_F} sudo chown -R hduser:hadoop hadoop-1.1.1 ${NORM}" 
     fi
 fi
 
