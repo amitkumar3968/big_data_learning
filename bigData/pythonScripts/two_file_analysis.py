@@ -5,6 +5,7 @@
 import string
 import collections
 import matplotlib.pyplot as plt
+import sys
 
 # File Type information.
 FILE_TYPE_XML = "xml"
@@ -172,9 +173,21 @@ class DataAnalysis:
 		plt.show()
 
 if __name__ == '__main__':
-	data_reader = DataReader({"4.txt":FILE_TYPE_PLAIN_TEXT, "3.txt":FILE_TYPE_PLAIN_TEXT})
-	dictionary_output = data_reader.DataReaderBasedOnFileType()
 
-	data_analysis = DataAnalysis(dictionary_output)
-	data_analysis.plottingGraphData(data_analysis.plotDataForAnalysis())
+    cmd_arguments = sys.argv
+    print cmd_arguments
+    print len(cmd_arguments)
+
+    if len(cmd_arguments) >= 3:
+        data_reader = DataReader({cmd_arguments[1]:FILE_TYPE_PLAIN_TEXT, cmd_arguments[2]:FILE_TYPE_PLAIN_TEXT})
+        dictionary_output = data_reader.DataReaderBasedOnFileType()
+
+        data_analysis = DataAnalysis(dictionary_output)
+        data_analysis.plottingGraphData(data_analysis.plotDataForAnalysis())
+    else:
+        data_reader = DataReader({"4.txt":FILE_TYPE_PLAIN_TEXT, "3.txt":FILE_TYPE_PLAIN_TEXT})
+        dictionary_output = data_reader.DataReaderBasedOnFileType()
+
+        data_analysis = DataAnalysis(dictionary_output)
+        data_analysis.plottingGraphData(data_analysis.plotDataForAnalysis())
 
