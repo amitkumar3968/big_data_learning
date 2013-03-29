@@ -175,11 +175,15 @@ class DataAnalysis:
 if __name__ == '__main__':
 
     cmd_arguments = sys.argv
-    print cmd_arguments
-    print len(cmd_arguments)
+    file_dict = {}
 
     if len(cmd_arguments) >= 3:
-        data_reader = DataReader({cmd_arguments[1]:FILE_TYPE_PLAIN_TEXT, cmd_arguments[2]:FILE_TYPE_PLAIN_TEXT})
+        for item_file_name in cmd_arguments:
+            if item_file_name == "two_file_analysis.py":
+                continue
+            else:
+                file_dict[item_file_name] = FILE_TYPE_PLAIN_TEXT
+        data_reader = DataReader(file_dict)
         dictionary_output = data_reader.DataReaderBasedOnFileType()
 
         data_analysis = DataAnalysis(dictionary_output)
