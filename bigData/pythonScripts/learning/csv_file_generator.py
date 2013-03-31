@@ -8,6 +8,7 @@ CSV File Generator
 import csv 									
 import random								
 from datetime import date
+import datetime
 from dateutil.rrule import rrule, DAILY
 import os.path
 import sys
@@ -15,7 +16,7 @@ import sys
 """
 Init Data for generating Data
 """
-my_data_header = "IPAddress,Date,Time,CustomerId,EqType,Interface,Status,PeakUtilizationTx,PeakUtilizationRx,ThroughputIn,ThroughputOut,DropEvents,OctetsRxTx,PacketsRxTx,BroadcastPktsRxTx,McastPktsRxTx,CRCAlignErrors,UndersizePkts,OversizePkts,Fragments,Jabbers,Collisions" + "\n"
+my_data_header = "IPAddress,Date&Time,CustomerId,EqType,Interface,Status,PeakUtilizationTx,PeakUtilizationRx,ThroughputIn,ThroughputOut,DropEvents,OctetsRxTx,PacketsRxTx,BroadcastPktsRxTx,McastPktsRxTx,CRCAlignErrors,UndersizePkts,OversizePkts,Fragments,Jabbers,Collisions" + "\n"
 
 cmd_arguments = sys.argv
 print cmd_arguments
@@ -28,7 +29,7 @@ if len(cmd_arguments) > 1:
 		ip_end_range = 12										# IP x.x.x.13 end range, x.x.x. is replaced by the cluster IP info
 		start_date = date(2013, 1, 1)							# Start date yyyy,mm,dd
 		end_date = date(2013, 2, 1) 							# End date yyyy,mm,dd
-		frequency = 1 											# Every hour data collection frequency 
+		frequency = 900											# Data collection frequency in Seconds (900 == 15 minutes)
 	elif cmd_arguments[1] == "--medium" or cmd_arguments[1] == "-m":
 		cluster_ip = ["10.15.244.0", "10.15.243.0","10.15.242.0"] 			
 		interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
@@ -36,7 +37,7 @@ if len(cmd_arguments) > 1:
 		ip_end_range = 40										
 		start_date = date(2013, 1, 1)							
 		end_date = date(2013, 4, 1)								
-		frequency = 1	
+		frequency = 900	
 	elif cmd_arguments[1] == "--high" or cmd_arguments[1] == "-h":
 		cluster_ip = ["10.15.244.0", "10.15.243.0", "10.15.242.0", "10.15.241.0"]
 		interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
@@ -44,7 +45,7 @@ if len(cmd_arguments) > 1:
 		ip_end_range = 60										
 		start_date = date(2013, 1, 1)							
 		end_date = date(2013, 7, 1)								
-		frequency = 1
+		frequency = 900
 else:
 	cluster_ip = ["10.15.244.0", "10.15.243.0"] 			
 	interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
@@ -52,7 +53,7 @@ else:
 	ip_end_range = 12										
 	start_date = date(2012, 5, 30)							
 	end_date = date(2012, 9, 2)								
-	frequency = 1
+	frequency = 900
 
 
 """
@@ -86,7 +87,7 @@ def generate_date_range(start_date, end_date):
 	for date_input in rrule(DAILY, dtstart=start_date, until=end_date):
 		
 		# we traverse through the date till we reach the end and append data to date_range list
-		date_range.append(date_input.strftime("%Y-%m-%d"))
+		date_range.append(date_input.strftime("%d%m%y"))
 
 	return date_range
 	
@@ -103,7 +104,7 @@ def generate_data_per_day(ip_data, date_data, interface_data, frequency):
 	date_time = date_data
 	equipment_type = "ALFOplus80"
 	customer_id = equipment_type + "_LOC_" + ip_address
-	status = "OK"
+	status = "Meaningful"
 	peak_utilization_tx = 0 	#random.randint(10000000:20000000) 
 	peak_utilization_rx = 0 	#random.randint(10000000:20000000)
 	throughput_in =  0 			#random.randint(10000000:20000000) * 8 / 1000000
@@ -121,7 +122,7 @@ def generate_data_per_day(ip_data, date_data, interface_data, frequency):
 	collisions = 0 				#random.randrange(0,20)
 
 	# Init
-	hour = 0
+	second = 0
 	
 	# Creating a file_name using the IP information and Equipment Type
 	file_name = equipment_type + "_LOC_" + ip_address + ".NM.csv"
@@ -131,7 +132,8 @@ def generate_data_per_day(ip_data, date_data, interface_data, frequency):
 	if os.path.isfile(file_name) != True:
 		write_string_to_file(file_name, my_data_header)
 	
-	while hour != 24:
+	# Till we reach end of day - 86400 seconds == 24 hours
+	while second != 86400:
 		
 		# Generating random information in the values below
 		peak_utilization_tx = random.randint(10000000,20000000) 
@@ -145,11 +147,24 @@ def generate_data_per_day(ip_data, date_data, interface_data, frequency):
 		collisions = random.randrange(0,20)
 		
 		# Create a string to write to file, comma separated.
-		string_to_file = ip_address + "," + date_time  + "," +  str(hour)+":00"  + "," + customer_id + "," +  equipment_type + "," +  interface_data + "," +  status + "," +  str(peak_utilization_tx) + "," + str(peak_utilization_rx) + "," + str(throughput_in) + "," + str(throughput_out) + "," + str(drop_event) + "," + octets_rx_tx + "," + packets_rx_tx + "," + broadcast_pkts_rx_tx + "," + m_cast_pkts_rx_tx + "," + str(crc_alignment_error) + "," + undersize_pkts + "," + oversize_pkts + "," + str(fragmentation_count) + "," + str(jabber_packets) + "," + str(collisions) + "\n"
-		write_string_to_file(file_name, string_to_file)
 		
-		# Adding frequency as we can change this as required.
-		hour = hour + frequency
+		# when we below 35100 it is 9:45 but we need 09:45 and then we do a split to get 0945
+		if second <= 35100:
+			time_print = str(datetime.timedelta(seconds=second))[:4]
+			time_new = time_print.split(":")
+			time_new = time_new[0] + time_new[1]
+			string_to_file = ip_address + "," + date_time  + ":0" +  time_new + "," + customer_id + "," +  equipment_type + "," +  interface_data + "," +  status + "," +  str(peak_utilization_tx) + "," + str(peak_utilization_rx) + "," + str(throughput_in) + "," + str(throughput_out) + "," + str(drop_event) + "," + octets_rx_tx + "," + packets_rx_tx + "," + broadcast_pkts_rx_tx + "," + m_cast_pkts_rx_tx + "," + str(crc_alignment_error) + "," + undersize_pkts + "," + oversize_pkts + "," + str(fragmentation_count) + "," + str(jabber_packets) + "," + str(collisions) + "\n"
+			write_string_to_file(file_name, string_to_file)
+			
+		# else we are good to print time as it is
+		else:
+			time_print = str(datetime.timedelta(seconds=second))[:5]
+			time_new = time_print.split(":")
+			time_new = time_new[0] + time_new[1]
+			string_to_file = ip_address + "," + date_time  + ":" + time_new + "," + customer_id + "," +  equipment_type + "," +  interface_data + "," +  status + "," +  str(peak_utilization_tx) + "," + str(peak_utilization_rx) + "," + str(throughput_in) + "," + str(throughput_out) + "," + str(drop_event) + "," + octets_rx_tx + "," + packets_rx_tx + "," + broadcast_pkts_rx_tx + "," + m_cast_pkts_rx_tx + "," + str(crc_alignment_error) + "," + undersize_pkts + "," + oversize_pkts + "," + str(fragmentation_count) + "," + str(jabber_packets) + "," + str(collisions) + "\n"
+			write_string_to_file(file_name, string_to_file)
+		# Adding frequency which is in Seconds, and we can change this as required.
+		second = second + frequency
 
 
 """
