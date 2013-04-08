@@ -1,0 +1,90 @@
+
+-- Complete Hourly Report
+
+select 
+    max(hourly_data.OctetsRX) as ORX, 
+    max(hourly_data.OctetsTX) as OTX, 
+    substring(hourly_data.dathour,1,9) as hour_to_day, 
+    hourly_data.Interface, 
+    hourly_data.IPAddress, 
+    floor(avg(hourly_data.DropEvents)) as avg_drop, 
+    floor(avg(hourly_data.CRCAlignError)) as avg_crc_align,
+    floor(avg(hourly_data.Jabber)) as avg_jabber, 
+    floor(avg(hourly_data.Collisions)) as avg_collisions 
+from 
+(
+    select 
+        OctetsRX, 
+        OctetsTX, 
+        Date_Time, 
+        substring(Date_Time, 1, 9) as dathour, 
+        Interface, 
+        IPAddress, 
+        DropEvents, 
+        CRCAlignError, 
+        Jabber, 
+        Collisions
+    from tellabs_heavy
+) as hourly_data
+group by hourly_data.dathour, hourly_data.Interface, hourly_data.IPAddress;
+
+
+-- Complete Daily Report
+
+select 
+    daily_data.IP_address,
+    daily_data.Date_Time,
+    daily_data.Radio_Branch_Id,
+    substring(daily_data.hour_to_day,1,9) as daily,    
+    floor(avg(daily_data.avg_UAS)) as avg_UAS,
+    floor(avg(daily_data.avg_SES)) as avg_SES,
+    floor(avg(daily_data.avg_ES)) as avg_ES,
+    floor(avg(daily_data.avg_AIS)) as avg_AIS,
+    floor(avg(daily_data.avg_RLTS1)) as avg_RLTS1,
+    floor(avg(daily_data.avg_RLTS2)) as avg_RLTS2,
+    floor(avg(daily_data.avg_RLTM_MIN)) as avg_RLTM_MIN,
+    floor(avg(daily_data.avg_RLTM_MAX)) as avg_RLTM_MAX,
+    floor(avg(daily_data.avg_TLTM_MIN)) as avg_TLTM_MIN,
+    floor(avg(daily_data.avg_TLTM_MAX)) as avg_TLTM_MAX
+
+from
+(
+    select 
+        hourly_data.IP_address,
+        hourly_data.Date_Time,
+        hourly_data.Radio_Branch_Id,
+        substring(hourly_data.datehour,1,9) as hour_to_day,    
+        floor(avg(hourly_data.UAS)) as avg_UAS,
+        floor(avg(hourly_data.SES)) as avg_SES,
+        floor(avg(hourly_data.ES)) as avg_ES,
+        floor(avg(hourly_data.AIS)) as avg_AIS,
+        floor(avg(hourly_data.RLTS1)) as avg_RLTS1,
+        floor(avg(hourly_data.RLTS2)) as avg_RLTS2,
+        floor(avg(hourly_data.RLTM_MIN)) as avg_RLTM_MIN,
+        floor(avg(hourly_data.RLTM_MAX)) as avg_RLTM_MAX,
+        floor(avg(hourly_data.TLTM_MIN)) as avg_TLTM_MIN,
+        floor(avg(hourly_data.TLTM_MAX)) as avg_TLTM_MAX
+    from 
+    (
+        select 
+            IP_Address, 
+            Date_Time, 
+            Radio_Branch_Id, 
+            substring(Date_Time, 1, 9) as datehour, 
+            StatusInfo, 
+            UAS,
+            SES,
+            ES,
+            AIS,
+            RLTS1,
+            RLTS2,
+            RLTM_MIN,
+            RLTM_MAX,
+            TLTM_MIN,
+            TLTM_MAX
+        from tellabs_mwr_radio
+    ) as hourly_data
+    group by hourly_data.datehour, hourly_data.Radio_Branch_Id, hourly_data.IP_Address
+
+) as daily_data
+group by daily_data.hour_to_day, daily_data.Radio_Branch_Id, daily_data.IP_Address;

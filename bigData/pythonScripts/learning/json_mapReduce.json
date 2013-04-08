@@ -1,0 +1,1207 @@
+{
+  "classtype": "com.li.datapipeline.model.mapreduce.MapReduceExecutionStep",
+  "@id": 1,
+  "stepNumber": 1,
+  "id": null,
+  "createdUserId": null,
+  "lastUpdatedUserId": null,
+  "createdTime": null,
+  "lastUpdatedTime": null,
+  "active": false,
+  "version": null,
+  "tenantId": null,
+  "name": null,
+  "type": null,
+  "description": null,
+  "stepExecutor": "com.li.datapipeline.runtime.MapReduceStepExecutor",
+  "activities": [
+    {
+      "classtype": "com.li.datapipeline.model.Activity",
+      "@id": 2,
+      "id": 1,
+      "createdUserId": null,
+      "lastUpdatedUserId": null,
+      "createdTime": null,
+      "lastUpdatedTime": null,
+      "active": false,
+      "version": null,
+      "tenantId": null,
+      "mapRecordProcessors": [
+        {
+          "classtype": "com.li.datapipeline.model.recordprocessor.MapRecordProcessor",
+          "@id": 3,
+          "transformations": [
+            {
+              "classtype": "com.li.datapipeline.model.transformation.etl.parser.EtlParserTransform",
+              "@id": 4,
+              "config": {
+                "classtype": "com.li.datapipeline.model.transformation.etl.parser.EtlParserTransformConfig",
+                "@id": 5,
+                "destinationRecordSet": {
+                  "columns": [
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 6,
+                      "position": 0,
+                      "dataTypeClass": "java.lang.String",
+                      "name": "IPAddress",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 7,
+                      "position": 1,
+                      "dataTypeClass": "java.lang.String",
+                      "name": "DateTime",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 8,
+                      "position": 2,
+                      "dataTypeClass": "java.lang.String",
+                      "name": "InterfaceType",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 9,
+                      "position": 3,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "OctetsRX",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 10,
+                      "position": 4,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "OctetsTX",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 11,
+                      "position": 5,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "DropEvents",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 12,
+                      "position": 6,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "CRCAlignError",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 13,
+                      "position": 7,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "JabberPackets",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 14,
+                      "position": 8,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "Collisions",
+                      "keyValueType": "VALUE"
+                    }
+                  ]
+                },
+                "etlParser": {
+                  "classtype": "com.li.datapipeline.model.transformation.etl.parser.impl.TextFormatEtlParser$DelimitedParser",
+                  "@id": 15,
+                  "delimiter": ","
+                },
+                "columnToEtlOperation": {
+                  "entries": [
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 16,
+                        "position": 0,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "IPAddress",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 17,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                          "@id": 18,
+                          "arrayOf": "java.lang.Object",
+                          "index": 0
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 19,
+                        "position": 1,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "DateTime",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 20,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 21,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 22,
+                            "arrayOf": "java.lang.Object",
+                            "index": 1
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.string.SubString",
+                          "@id": 23,
+                          "startIndex": 0,
+                          "endIndex": 9,
+                          "errorStrategy": "IgnoreRecord"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 24,
+                        "position": 2,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "InterfaceType",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 25,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                          "@id": 26,
+                          "arrayOf": "java.lang.Object",
+                          "index": 4
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 27,
+                        "position": 3,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "OctetsRX",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 28,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 29,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 30,
+                            "arrayOf": "java.lang.Object",
+                            "index": 7
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$StringToDouble"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 31,
+                        "position": 4,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "OctetsTX",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 32,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 33,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 34,
+                            "arrayOf": "java.lang.Object",
+                            "index": 18
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$StringToDouble"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 35,
+                        "position": 5,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "DropEvents",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 36,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 37,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 38,
+                            "arrayOf": "java.lang.Object",
+                            "index": 6
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$StringToDouble"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 39,
+                        "position": 6,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "CRCAlignError",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 40,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 41,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 42,
+                            "arrayOf": "java.lang.Object",
+                            "index": 11
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$StringToDouble"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 43,
+                        "position": 7,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "JabberPackets",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 44,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 45,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 46,
+                            "arrayOf": "java.lang.Object",
+                            "index": 15
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$StringToDouble"
+                        }
+                      }
+                    },
+                    {
+                      "key": {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 47,
+                        "position": 8,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "Collisions",
+                        "keyValueType": "VALUE"
+                      },
+                      "value": {
+                        "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                        "@id": 48,
+                        "underLying": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.SingleCompoundEtlOperation",
+                          "@id": 49,
+                          "underLying": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.array.ArrayPicker",
+                            "@id": 50,
+                            "arrayOf": "java.lang.Object",
+                            "index": 16
+                          },
+                          "using": {
+                            "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$ObjectToString"
+                          }
+                        },
+                        "using": {
+                          "classtype": "com.li.datapipeline.model.transformation.etl.operation.impl.Converters$StringToDouble"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "inputKeyClass": "java.lang.Long",
+                "inputValueClass": "java.lang.String",
+                "outputKeyClass": "com.li.datapipeline.model.dictionary.RecordKey",
+                "outputValueClass": "com.li.datapipeline.model.dictionary.Record"
+              },
+              "transformationConfiguration": 5
+            },
+            {
+              "classtype": "com.li.datapipeline.model.transformation.etl.formatter.EtlOutputFormatter",
+              "@id": 51,
+              "transformationConfiguration": {
+                "classtype": "com.li.datapipeline.model.transformation.etl.formatter.EtlOutputFormatterConfig",
+                "@id": 52,
+                "etlFormatter": {
+                  "classtype": "com.li.datapipeline.model.transformation.etl.formatter.impl.CustomKeyBasedFormatter",
+                  "@id": 53,
+                  "recordSet": {
+                    "columns": [
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 54,
+                        "position": 0,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "IPAddress",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 55,
+                        "position": 1,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "DateTime",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 56,
+                        "position": 2,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "InterfaceType",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 57,
+                        "position": 3,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "OctetsRX",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 58,
+                        "position": 4,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "OctetsTX",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 59,
+                        "position": 5,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "DropEvents",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 60,
+                        "position": 6,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "CRCAlignError",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 61,
+                        "position": 7,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "JabberPackets",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 62,
+                        "position": 8,
+                        "dataTypeClass": "java.lang.Double",
+                        "name": "Collisions",
+                        "keyValueType": "VALUE"
+                      }
+                    ]
+                  },
+                  "recordKeyType": {
+                    "keys": [
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 63,
+                        "position": 0,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "IPAddress",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 64,
+                        "position": 1,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "DateTime",
+                        "keyValueType": "VALUE"
+                      },
+                      {
+                        "classtype": "com.li.datapipeline.model.dictionary.Column",
+                        "@id": 65,
+                        "position": 2,
+                        "dataTypeClass": "java.lang.String",
+                        "name": "InterfaceType",
+                        "keyValueType": "VALUE"
+                      }
+                    ],
+                    "recordSet": {
+                      "columns": [
+                        63,
+                        64,
+                        65,
+                        {
+                          "classtype": "com.li.datapipeline.model.dictionary.Column",
+                          "@id": 66,
+                          "position": 3,
+                          "dataTypeClass": "java.lang.Double",
+                          "name": "OctetsRX",
+                          "keyValueType": "VALUE"
+                        },
+                        {
+                          "classtype": "com.li.datapipeline.model.dictionary.Column",
+                          "@id": 67,
+                          "position": 4,
+                          "dataTypeClass": "java.lang.Double",
+                          "name": "OctetsTX",
+                          "keyValueType": "VALUE"
+                        },
+                        {
+                          "classtype": "com.li.datapipeline.model.dictionary.Column",
+                          "@id": 68,
+                          "position": 5,
+                          "dataTypeClass": "java.lang.Double",
+                          "name": "DropEvents",
+                          "keyValueType": "VALUE"
+                        },
+                        {
+                          "classtype": "com.li.datapipeline.model.dictionary.Column",
+                          "@id": 69,
+                          "position": 6,
+                          "dataTypeClass": "java.lang.Double",
+                          "name": "CRCAlignError",
+                          "keyValueType": "VALUE"
+                        },
+                        {
+                          "classtype": "com.li.datapipeline.model.dictionary.Column",
+                          "@id": 70,
+                          "position": 7,
+                          "dataTypeClass": "java.lang.Double",
+                          "name": "JabberPackets",
+                          "keyValueType": "VALUE"
+                        },
+                        {
+                          "classtype": "com.li.datapipeline.model.dictionary.Column",
+                          "@id": 71,
+                          "position": 8,
+                          "dataTypeClass": "java.lang.Double",
+                          "name": "Collisions",
+                          "keyValueType": "VALUE"
+                        }
+                      ]
+                    },
+                    "defaultKey": false
+                  }
+                },
+                "inputKeyClass": "com.li.datapipeline.model.dictionary.RecordKey",
+                "inputValueClass": "com.li.datapipeline.model.dictionary.Record",
+                "outputKeyClass": "[Ljava.lang.Object;",
+                "outputValueClass": "[Ljava.lang.Object;"
+              }
+            }
+          ],
+          "outputRedirections": [],
+          "inputRecordFilter": null,
+          "inputConfiguration": null
+        }
+      ],
+      "reduceRecordProcessor": {
+        "classtype": "com.li.datapipeline.model.recordprocessor.ReduceRecordProcessor",
+        "@id": 72,
+        "transformations": [
+          {
+            "classtype": "com.li.datapipeline.model.transformation.etl.formatter.EtlOutputFormatter",
+            "@id": 73,
+            "transformationConfiguration": {
+              "classtype": "com.li.datapipeline.model.transformation.etl.formatter.EtlOutputFormatterConfig",
+              "@id": 74,
+              "etlFormatter": {
+                "classtype": "com.li.datapipeline.model.transformation.etl.formatter.impl.JoinedTextEtlFormatter",
+                "@id": 75,
+                "recordSet": {
+                  "columns": [
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 76,
+                      "position": 0,
+                      "dataTypeClass": "java.lang.String",
+                      "name": "IPAddress",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 77,
+                      "position": 1,
+                      "dataTypeClass": "java.lang.String",
+                      "name": "DateTime",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 78,
+                      "position": 2,
+                      "dataTypeClass": "java.lang.String",
+                      "name": "InterfaceType",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 79,
+                      "position": 3,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "maxOctetsRX",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 80,
+                      "position": 4,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "maxOctetsTX",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 81,
+                      "position": 5,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "averageThroughputIn",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 82,
+                      "position": 6,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "averageThroughputOut",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 83,
+                      "position": 7,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "averageDropEvents",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 84,
+                      "position": 8,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "averageCRCAlignError",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 85,
+                      "position": 9,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "averageJabberPackets",
+                      "keyValueType": "VALUE"
+                    },
+                    {
+                      "classtype": "com.li.datapipeline.model.dictionary.Column",
+                      "@id": 86,
+                      "position": 10,
+                      "dataTypeClass": "java.lang.Double",
+                      "name": "averageCollisions",
+                      "keyValueType": "VALUE"
+                    }
+                  ]
+                },
+                "joiner": ","
+              },
+              "inputKeyClass": "com.li.datapipeline.model.dictionary.RecordKey",
+              "inputValueClass": "com.li.datapipeline.model.dictionary.Record",
+              "outputKeyClass": "java.lang.String",
+              "outputValueClass": "java.lang.String"
+            }
+          }
+        ],
+        "outputRedirections": [],
+        "convergentTansformation": {
+          "classtype": "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformation",
+          "@id": 87,
+          "transformationConfiguration": {
+            "classtype": "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration",
+            "@id": 88,
+            "recordSetMapping": {
+              "source": {
+                "columns": [
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 89,
+                    "position": 0,
+                    "dataTypeClass": "java.lang.String",
+                    "name": "IPAddress",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 90,
+                    "position": 1,
+                    "dataTypeClass": "java.lang.String",
+                    "name": "DateTime",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 91,
+                    "position": 2,
+                    "dataTypeClass": "java.lang.String",
+                    "name": "InterfaceType",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 92,
+                    "position": 3,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsRX",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 93,
+                    "position": 4,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsTX",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 94,
+                    "position": 5,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "DropEvents",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 95,
+                    "position": 6,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "CRCAlignError",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 96,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "JabberPackets",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 97,
+                    "position": 8,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "Collisions",
+                    "keyValueType": "VALUE"
+                  }
+                ]
+              },
+              "destination": {
+                "columns": [
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 98,
+                    "position": 0,
+                    "dataTypeClass": "java.lang.String",
+                    "name": "IPAddress",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 99,
+                    "position": 1,
+                    "dataTypeClass": "java.lang.String",
+                    "name": "DateTime",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 100,
+                    "position": 2,
+                    "dataTypeClass": "java.lang.String",
+                    "name": "InterfaceType",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 101,
+                    "position": 3,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "maxOctetsRX",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 102,
+                    "position": 4,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "maxOctetsTX",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 103,
+                    "position": 5,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageThroughputIn",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 104,
+                    "position": 6,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageThroughputOut",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 105,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageDropEvents",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 106,
+                    "position": 8,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageCRCAlignError",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 107,
+                    "position": 9,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageJabberPackets",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 108,
+                    "position": 10,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageCollisions",
+                    "keyValueType": "VALUE"
+                  }
+                ]
+              }
+            },
+            "parsedRecordSet": {
+              "columns": [
+                89,
+                90,
+                91,
+                92,
+                93,
+                94,
+                95,
+                96,
+                97
+              ]
+            },
+            "destinationToSource": {
+              "entries": [
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 109,
+                    "position": 3,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "maxOctetsRX",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 110,
+                    "position": 3,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsRX",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 111,
+                    "position": 4,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "maxOctetsTX",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 112,
+                    "position": 4,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsTX",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 113,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageThroughputIn",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 114,
+                    "position": 3,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsRX",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 115,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageThroughputOut",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 116,
+                    "position": 4,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsTX",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 117,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageDropEvents",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 118,
+                    "position": 5,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "DropEvents",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 119,
+                    "position": 8,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageCRCAlignError",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 120,
+                    "position": 6,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "CRCAlignError",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 121,
+                    "position": 9,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageJabberPackets",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 122,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "JabberPackets",
+                    "keyValueType": "VALUE"
+                  }
+                },
+                {
+                  "key": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 123,
+                    "position": 10,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "averageCollisions",
+                    "keyValueType": "VALUE"
+                  },
+                  "value": {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 124,
+                    "position": 8,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsTX",
+                    "keyValueType": "VALUE"
+                  }
+                }
+              ]
+            },
+            "operationsOnColumns": {
+              "entries": [
+                {
+                  "key": 109,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Max"
+                  ]
+                },
+                {
+                  "key": 111,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Max"
+                  ]
+                },
+                {
+                  "key": 113,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Average"
+                  ]
+                },
+                {
+                  "key": 115,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Average"
+                  ]
+                },
+                {
+                  "key": 117,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Average"
+                  ]
+                },
+                {
+                  "key": 119,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Average"
+                  ]
+                },
+                {
+                  "key": 121,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Average"
+                  ]
+                },
+                {
+                  "key": 123,
+                  "value": [
+                    "com.li.datapipeline.model.transformation.etl.aggregate.impl.GroupByTransformationConfiguration$GroupByOperation",
+                    "Average"
+                  ]
+                }
+              ]
+            },
+            "groupByKey": {
+              "keys": [
+                {
+                  "classtype": "com.li.datapipeline.model.dictionary.Column",
+                  "@id": 125,
+                  "position": 0,
+                  "dataTypeClass": "java.lang.String",
+                  "name": "IPAddress",
+                  "keyValueType": "VALUE"
+                },
+                {
+                  "classtype": "com.li.datapipeline.model.dictionary.Column",
+                  "@id": 126,
+                  "position": 1,
+                  "dataTypeClass": "java.lang.String",
+                  "name": "DateTime",
+                  "keyValueType": "VALUE"
+                },
+                {
+                  "classtype": "com.li.datapipeline.model.dictionary.Column",
+                  "@id": 127,
+                  "position": 2,
+                  "dataTypeClass": "java.lang.String",
+                  "name": "InterfaceType",
+                  "keyValueType": "VALUE"
+                }
+              ],
+              "recordSet": {
+                "columns": [
+                  125,
+                  126,
+                  127,
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 128,
+                    "position": 3,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsRX",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 129,
+                    "position": 4,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "OctetsTX",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 130,
+                    "position": 5,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "DropEvents",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 131,
+                    "position": 6,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "CRCAlignError",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 132,
+                    "position": 7,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "JabberPackets",
+                    "keyValueType": "VALUE"
+                  },
+                  {
+                    "classtype": "com.li.datapipeline.model.dictionary.Column",
+                    "@id": 133,
+                    "position": 8,
+                    "dataTypeClass": "java.lang.Double",
+                    "name": "Collisions",
+                    "keyValueType": "VALUE"
+                  }
+                ]
+              },
+              "defaultKey": false
+            },
+            "inputKeyClass": null,
+            "inputValueClass": null,
+            "outputKeyClass": null,
+            "outputValueClass": null,
+            "aggregatedRecordSet": {
+              "columns": [
+                98,
+                99,
+                100,
+                101,
+                102,
+                103,
+                104,
+                105,
+                106,
+                107,
+                108
+              ]
+            }
+          }
+        }
+      },
+      "name": null,
+      "description": null
+    }
+  ],
+  "inputConfiguration": {
+    "paths": [
+      "TellabsMwrPerformanceReport/TellabsMwrLanPerformanceReport/input/"
+    ],
+    "inputFormatClass": "org.apache.hadoop.mapreduce.lib.input.TextInputFormat"
+  },
+  "outputConfiguration": {
+    "path": "TellabsMwrPerformanceReport/TellabsMwrLanPerformanceReport/output/TellabsMwrLanPerformanceReportHourly/",
+    "outputFormatClass": "org.apache.hadoop.mapreduce.lib.output.TextOutputFormat"
+  },
+  "sortStep": false
+}
