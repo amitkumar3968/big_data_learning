@@ -144,8 +144,8 @@ def generate_data_per_day(ip_data, date_data, radio_branch_id_data, frequency):
 	file_name = "MWRRadioPerformaceReport" + ip_address + ".csv"
 	
 	# Dont write header data to file, if we are append to an exsisting file 
-	if os.path.isfile(file_name) != True:
-		write_string_to_file(file_name, my_data_header)
+	#if os.path.isfile(file_name) != True:
+	#	write_string_to_file(file_name, my_data_header)
 	
 	# Till we reach end of day - 86400 seconds == 24 hours
 	while second != day_in_seconds:
