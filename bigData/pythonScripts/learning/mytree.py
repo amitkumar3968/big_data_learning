@@ -3,8 +3,10 @@ import csv
 from numpy import genfromtxt
 import random
 
-def RBSNodeData(StationId, Status, AverageUAS, AverageSES, AverageES, AverageAIS, AverageRLTS1, AverageRLTS2, AverageRLTMMIN, AverageRLTMMAX, TypeInfo):
-	
+def RBSNodeData(StationId, Status, AverageUAS, 
+		AverageSES, AverageES, AverageAIS, 
+		AverageRLTS1, AverageRLTS2, AverageRLTMMIN, 
+		AverageRLTMMAX, TypeInfo):	
 	RBSNode = {}
 	RBSNode["StationId"] = StationId 
 	RBSNode["Status"] = Status 
@@ -20,7 +22,10 @@ def RBSNodeData(StationId, Status, AverageUAS, AverageSES, AverageES, AverageAIS
 	
 	return RBSNode
 
-def MWRNodeData(StationId, Status, PeakUtilizationTx, PeakUtilizationRx, AverageThroughPutTx, AverageThroughPutRx, AverageDropEvents, AverageCRCAlignError, AverageJabber, AverageCollision, TypeInfo):
+def MWRNodeData(StationId, Status, PeakUtilizationTx, 
+	PeakUtilizationRx, AverageThroughPutTx, AverageThroughPutRx, 
+	AverageDropEvents, AverageCRCAlignError, AverageJabber, 
+	AverageCollision, TypeInfo):
 	
 	MWRNode = {}				
 						
@@ -44,8 +49,8 @@ def NodeInfo(PhyAddress, SiteName, NodeData):
 	checkIp = PhyAddress.split(".")
 	if checkIp[3] == "1":
 		Node = {}
-		Node["PhysicalAddress"] = PhyAddress
-		Node["NEId"] = SiteName
+		Node["id"] = PhyAddress
+		Node["name"] = SiteName
 		NodeData = {}
 		NodeData["type"] = "router"
 		NodeData["Status"] = "Present"
@@ -53,8 +58,8 @@ def NodeInfo(PhyAddress, SiteName, NodeData):
 		Node["children"] = []
 	else:
 		Node = {}
-		Node["PhysicalAddress"] = PhyAddress
-		Node["NEId"] = SiteName
+		Node["id"] = PhyAddress
+		Node["name"] = SiteName
 		Node["data"] = NodeData
 		Node["children"] = []
 		
@@ -71,7 +76,8 @@ Write data to file - we write each line at a time.
 """
 		
 def write_string_to_file(file_name, string_to_write):
-	# Open file in Append mode we want this as we will write multiple time in the same file.
+	# Open file in Append mode we want this as we will 
+	# write multiple time in the same file.
 	file_description = open(file_name, "w+")
 	
 	# Write line to File
@@ -123,27 +129,31 @@ def main():
 			RLTM_MAX = random.randrange(-44, -40)
 						
 			name = item.split(".")
-			RBSNode = RBSNodeData("CE0"+name[3]+"BEN DASH", "Present", UAS, SES, ES, AIS, RLTS1, RLTS2, RLTM_MIN, RLTM_MAX, "RBS")
+			RBSNode = RBSNodeData("CE0"+name[3]+"BEN DASH", "Present", 
+				UAS, SES, ES, AIS, RLTS1, RLTS2, 
+				RLTM_MIN, RLTM_MAX, "RBS")
 			data2.append(NodeInfo(item, "CEBDH70"+name[3], RBSNode))
 		elif unique_ip[item] == "router":
-			MWRNode = MWRNodeData("CEBDH BEN DASH", "Present", 0, 0, 0, 0, 0, 0, 0 , 0,"")
+			MWRNode = MWRNodeData("CEBDH BEN DASH", "Present", 
+				0, 0, 0, 0, 0, 0, 0 , 0,"")
 			name = item.split(".")
 			data2.append(NodeInfo(item, "CEBDH70"+name[3], MWRNode))
 
 	for item in data2:
-		dictionary_node[item['PhysicalAddress']] = item
+		dictionary_node[item['id']] = item
 	#print dictionary_node
 	
 	
 	for tree in data:
 		if tree[0] != '' and tree[1] != '':
-			addingChildren(dictionary_node[tree[0]], dictionary_node[tree[1]])
+			addingChildren(dictionary_node[tree[0]], 
+				dictionary_node[tree[1]])
 		elif tree[0] == '':
 			print tree[1]   
 			root = dictionary_node[tree[1]]
 	
 	write_string_to_file("Tree.json", json.dumps(root))
-	
+	print  json.dumps(root)
 
 if __name__ == '__main__':
 	main()
