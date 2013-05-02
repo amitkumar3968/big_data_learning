@@ -53,7 +53,7 @@ def NodeInfo(PhyAddress, SiteName, NodeData):
 	checkIp = PhyAddress.split(".")
 	if checkIp[3] == "1":
 		Node = {}
-		Node["id"] = PhyAddress
+		Node["id"] = checkIp[3]
 		Node["name"] = SiteName
 		NodeData = {}
 		NodeData["type"] = "router"
@@ -62,7 +62,7 @@ def NodeInfo(PhyAddress, SiteName, NodeData):
 		Node["children"] = []
 	else:
 		Node = {}
-		Node["id"] = PhyAddress
+		Node["id"] = checkIp[3]
 		Node["name"] = SiteName
 		Node["data"] = NodeData
 		Node["children"] = []
@@ -97,7 +97,7 @@ def main():
 	data2 = []
 	root = {}
 	
-	data = genfromtxt(open('input_tree.csv'), delimiter=',', dtype=None)
+	data = genfromtxt(open('topology_json_tree_input.csv'), delimiter=',', dtype=None)
 	for dataInfo in data:
 		#print dataInfo
 		if dataInfo[0] not in unique_ip:
@@ -153,16 +153,18 @@ def main():
 		dictionary_node[item['id']] = item
 	#print dictionary_node
 	
+	print data
 	
 	for tree in data:
 		if tree[0] != '' and tree[1] != '':
-			addingChildren(dictionary_node[tree[0]], 
-				dictionary_node[tree[1]])
+			id_data_p = tree[0].split(".")
+			id_data_c = tree[1].split(".")
+			addingChildren(dictionary_node[id_data_p[3]], dictionary_node[id_data_c[3]])
 		elif tree[0] == '':
-			print tree[1]   
-			root = dictionary_node[tree[1]]
+			id_data = tree[1].split(".")
+			root = dictionary_node[id_data[3]]
 	
-	write_string_to_file("Tree.json", json.dumps(root))
+	write_string_to_file("Tree.json", json.dumps(root, indent=2))
 	print  json.dumps(root)
 
 if __name__ == '__main__':

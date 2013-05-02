@@ -13,6 +13,12 @@ from dateutil.rrule import rrule, DAILY
 import os.path
 import sys
 
+import json
+import csv
+from numpy import genfromtxt
+import random
+
+
 """
 Init Data for generating Data
 """
@@ -20,61 +26,24 @@ my_data_header = "IP-Address,Date&Time,CustomerId,Eq.Type,Interface,Status,Drop 
 
 
 
+
+
 cmd_arguments = sys.argv
-print cmd_arguments
+#print cmd_arguments
 
 
-if len(cmd_arguments) > 1:
-	if cmd_arguments[1] == "--low" or cmd_arguments[1] == "-l":
-		cluster_ip = ["10.157.244.0"] 			# Cluster Name - /24 based network - each cluster can have atmost 254 nodes
-		interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	# Interface information 
-		ip_start_range = 2										# IP x.x.x.12 start range, x.x.x. is replaced by the cluster IP info
-		ip_end_range = 12										# IP x.x.x.13 end range, x.x.x. is replaced by the cluster IP info
-		start_date = date(2013, 1, 1)							# Start date yyyy,mm,dd
-		end_date = date(2013, 2, 1) 							# End date yyyy,mm,dd
-		frequency = 900											# Data collection frequency in Seconds (900 == 15 minutes)
-		day_in_seconds = 86400
-		day_9_45_am = 35100 
-	elif cmd_arguments[1] == "--medium" or cmd_arguments[1] == "-m":
-		cluster_ip = ["10.157.244.0", "10.157.243.0","10.157.242.0"] 			
-		interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
-		ip_start_range = 10										
-		ip_end_range = 40										
-		start_date = date(2013, 1, 1)							
-		end_date = date(2013, 4, 1)								
-		frequency = 900	
-		day_in_seconds = 86400
-		day_9_45_am = 35100 
-	elif cmd_arguments[1] == "--high" or cmd_arguments[1] == "-h":
-		cluster_ip = ["10.157.244.0", "10.157.243.0", "10.157.242.0", "10.157.241.0"]
-		interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
-		ip_start_range = 10										
-		ip_end_range = 60										
-		start_date = date(2013, 1, 1)							
-		end_date = date(2013, 7, 1)								
-		frequency = 900
-		day_in_seconds = 86400
-		day_9_45_am = 35100 
-	elif cmd_arguments[1] == "--vlow" or cmd_arguments[1] == "-vl":
-		cluster_ip = ["10.157.244.0"]
-		interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
-		ip_start_range = 10										
-		ip_end_range = 12										
-		start_date = date(2013, 1, 1)							
-		end_date = date(2013, 1, 1)								
-		frequency = 900
-		day_in_seconds = 36000
-		day_9_45_am = 35100 
-else:
-	cluster_ip = ["10.157.244.0", "10.157.243.0"] 			
-	interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	
-	ip_start_range = 10										
-	ip_end_range = 12										
-	start_date = date(2012, 5, 30)							
-	end_date = date(2012, 9, 2)								
-	frequency = 900
-	day_in_seconds = 86400
-	day_9_45_am = 35100 
+cluster_ip = ["10.157.244.0"] 							# Cluster Name - /24 based network - each cluster can have atmost 254 nodes
+interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	# Interface information 
+start_date = date(datetime.datetime.now().date().year, 
+				datetime.datetime.now().date().month, 
+				datetime.datetime.now().date().day)		# Start date yyyy,mm,dd
+end_date = date(datetime.datetime.now().date().year, 
+				datetime.datetime.now().date().month, 
+				datetime.datetime.now().date().day) 	# End date yyyy,mm,dd - yesterday's data
+frequency = 900											# Data collection frequency in Seconds (900 == 15 minutes)
+day_in_seconds = 86400
+day_9_45_am = 35100 
+
 
 
 """
@@ -150,35 +119,40 @@ def generate_data_per_day(ip_data, date_data, interface_data, frequency):
 	
 
 	# Init
-	second = 0
+	if (datetime.datetime.now().hour == 0):
+		second = 82800 		#(datetime.datetime.now().hour-1) * 60 * 60
+		end_of_hour = 86400 #(datetime.datetime.now().hour) * 60 * 60
+	else:	
+		second = (datetime.datetime.now().hour-1) * 60 * 60
+		end_of_hour = (datetime.datetime.now().hour) * 60 * 60
 	
 	# Creating a file_name using the IP information and Equipment Type
-	file_name = equipment_type + "_LOC_" + ip_address + ".NMS5UX.csv"
+	file_name = "/home/ubuntu/TellabsMwrLanPerformanceReport/Source"+ equipment_type + "_LOC_" + ip_address + ".NMS5UX.csv"
 	
 	# Dont write header data to file, if we are append to an exsisting file 
-	if os.path.isfile(file_name) != True:
-		write_string_to_file(file_name, my_data_header)
+	#if os.path.isfile(file_name) != True:
+	#	write_string_to_file(file_name, my_data_header)
 	
 	# Till we reach end of day - 86400 seconds == 24 hours
-	while second != day_in_seconds:
+	while second != end_of_hour:
 		
 		# Generating random information in the values below
-		utilization_tx = float((random.randint(5000000,20000000) / 100000000.0) * 100)
-		utilization_rx = float((random.randint(5000000,20000000) / 100000000.0) * 100)
+		utilization_tx = float((random.randint(7000000,60000000) / 100000000.0) * 100)
+		utilization_rx = float((random.randint(1000000,30000000) / 100000000.0) * 100)
 		#throughput_in =  random.randint(10000000,20000000) * 8 / 1000000
 		#throughput_out = random.randint(10000000,20000000) * 8 / 1000000
 		drop_event = random.randrange(0,50)
-		octets_rx = random.randrange(1000000,2000000)
-		octets_tx = random.randrange(1000000,2000000)
+		octets_rx = random.randrange(1500000,2500000)
+		octets_tx = random.randrange(900000,1990000)
 		packets_rx = random.randrange(5000,10000)
-		packets_tx = random.randrange(5000,10000)
+		packets_tx = random.randrange(3000,7000)
 		broadcast_pkts_rx = random.randrange(5000,7000)
-		broadcast_pkts_tx = random.randrange(5000,7000)
+		broadcast_pkts_tx = random.randrange(6000,8000)
 		m_cast_pkts_rx = random.randrange(1480,1500)
 		crc_alignment_error = random.randrange(10,20)
-		fragmentation_count = random.randrange(0,20)
-		jabber_packets = random.randrange(0,20)
-		collisions = random.randrange(0,20)
+		fragmentation_count = random.randrange(0,12)
+		jabber_packets = random.randrange(3,20)
+		collisions = random.randrange(4,25)
 		
 		# Create a string to write to file, comma separated.
 		
@@ -220,14 +194,36 @@ def write_string_to_file(file_name, string_to_write):
 Main Function
 """
 	
+def return_ip_range_from_file():	
+	unique_ip = {}
+	data = genfromtxt(open('topology_json_tree_input.csv'), delimiter=',', dtype=None)
+	for dataInfo in data:
+		#print dataInfo
+		if dataInfo[0] not in unique_ip:
+			if dataInfo[0] == '':
+				unique_ip[dataInfo[1]]="router"
+			else:
+				unique_ip[dataInfo[0]]=dataInfo[2]			
+	
+	#print unique_ip
+	ip_range = []
+	for up in unique_ip:
+		if unique_ip[up] == "MWR":
+			#print up, unique_ip[up]
+			ip_range.append(up)
+	
+	return ip_range
+		
+	
 if __name__ == '__main__':
+	
+	
 	
 	# Start from the Cluster and traverse the cluster for cluster IP
 	for cluster_info in cluster_ip:
 
-		# Create a Range using the function which takes cluster_ip as the input
-		range_ip = generate_ip_range(cluster_info, ip_start_range, ip_end_range)
-		print "Generating files for Cluster : " + cluster_info
+		range_ip = []
+		range_ip = return_ip_range_from_file();
 		
 		# For every IP lets create a file
 		for range_ip_info in range_ip:
@@ -243,7 +239,7 @@ if __name__ == '__main__':
 					# Each file is unique for every IP within a Cluster
 					generate_data_per_day(range_ip_info, range_date_info, interface[interface_type_range], frequency)
 					# continue
-		print "File Generation Complete for Cluster : " + cluster_info
-	print "\n------------------------------------------"	
-	print "File Generation Complete for ALL Clusters"			
+		#print "File Generation Complete for Cluster : " + cluster_info
+	#print "\n------------------------------------------"	
+	#print "File Generation Complete for ALL Clusters"			
 

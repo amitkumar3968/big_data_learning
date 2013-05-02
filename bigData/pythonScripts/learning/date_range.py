@@ -15,3 +15,5 @@ for info in info_date:
 	print info
 
 
+
+print date.date.now().date()
