@@ -1,3 +1,9 @@
+'''
+Topology Tree creation usig the CSV as input and creates output as JSON
+
+'''
+
+
 import json
 import csv
 from numpy import genfromtxt
