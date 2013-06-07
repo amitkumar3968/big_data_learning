@@ -1,0 +1,608 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [], 
+                  "data": {
+                    "Status": "Present", 
+                    "AverageRLTS1": 0, 
+                    "AverageRLTS2": 1, 
+                    "AverageAIS": 0, 
+                    "AverageUAS": 0, 
+                    "AverageSES": 0, 
+                    "AverageRLTMMIN": -47, 
+                    "StationId": "CE026BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PhysicalAddress": "10.157.244.26", 
+                    "type": "RBS", 
+                    "AverageES": 0, 
+                    "AverageRLTMMAX": -41
+                  }, 
+                  "id": "26", 
+                  "name": "CEBDH7026"
+                }
+              ], 
+              "data": {
+                "Status": "Present", 
+                "PeakUtilizationTx": 71992, 
+                "AverageCollision": 24, 
+                "AverageJabber": 3, 
+                "AverageCRCAlignError": 2, 
+                "AverageThroughPutTx": 140, 
+                "AverageDropEvents": 2, 
+                "StationId": "CEBDH14BEN DASH", 
+                "ZoneNetAddress": "10.157.0.0", 
+                "PeakUtilizationRx": 132870, 
+                "PhysicalAddress": "10.157.244.14", 
+                "type": "MWR", 
+                "AverageThroughPutRx": 155
+              }, 
+              "id": "14", 
+              "name": "CEBDH714"
+            }, 
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [], 
+                      "data": {
+                        "Status": "Present", 
+                        "AverageRLTS1": 0, 
+                        "AverageRLTS2": 0, 
+                        "AverageAIS": 0, 
+                        "AverageUAS": 0, 
+                        "AverageSES": 0, 
+                        "AverageRLTMMIN": -49, 
+                        "StationId": "CE040BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PhysicalAddress": "10.157.244.40", 
+                        "type": "RBS", 
+                        "AverageES": 1, 
+                        "AverageRLTMMAX": -41
+                      }, 
+                      "id": "40", 
+                      "name": "CEBDH7040"
+                    }
+                  ], 
+                  "data": {
+                    "Status": "Present", 
+                    "PeakUtilizationTx": 61588, 
+                    "AverageCollision": 21, 
+                    "AverageJabber": 6, 
+                    "AverageCRCAlignError": 4, 
+                    "AverageThroughPutTx": 62, 
+                    "AverageDropEvents": 7, 
+                    "StationId": "CEBDH28BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PeakUtilizationRx": 116638, 
+                    "PhysicalAddress": "10.157.244.28", 
+                    "type": "MWR", 
+                    "AverageThroughPutRx": 8
+                  }, 
+                  "id": "28", 
+                  "name": "CEBDH728"
+                }, 
+                {
+                  "children": [
+                    {
+                      "children": [], 
+                      "data": {
+                        "Status": "Present", 
+                        "AverageRLTS1": 0, 
+                        "AverageRLTS2": 1, 
+                        "AverageAIS": 1, 
+                        "AverageUAS": 0, 
+                        "AverageSES": 0, 
+                        "AverageRLTMMIN": -49, 
+                        "StationId": "CE042BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PhysicalAddress": "10.157.244.42", 
+                        "type": "RBS", 
+                        "AverageES": 0, 
+                        "AverageRLTMMAX": -43
+                      }, 
+                      "id": "42", 
+                      "name": "CEBDH7042"
+                    }, 
+                    {
+                      "children": [], 
+                      "data": {
+                        "Status": "Present", 
+                        "AverageRLTS1": 1, 
+                        "AverageRLTS2": 0, 
+                        "AverageAIS": 1, 
+                        "AverageUAS": 0, 
+                        "AverageSES": 1, 
+                        "AverageRLTMMIN": -50, 
+                        "StationId": "CE044BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PhysicalAddress": "10.157.244.44", 
+                        "type": "RBS", 
+                        "AverageES": 0, 
+                        "AverageRLTMMAX": -42
+                      }, 
+                      "id": "44", 
+                      "name": "CEBDH7044"
+                    }
+                  ], 
+                  "data": {
+                    "Status": "Present", 
+                    "PeakUtilizationTx": 52226, 
+                    "AverageCollision": 39, 
+                    "AverageJabber": 7, 
+                    "AverageCRCAlignError": 4, 
+                    "AverageThroughPutTx": 9, 
+                    "AverageDropEvents": 6, 
+                    "StationId": "CEBDH30BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PeakUtilizationRx": 102425, 
+                    "PhysicalAddress": "10.157.244.30", 
+                    "type": "MWR", 
+                    "AverageThroughPutRx": 75
+                  }, 
+                  "id": "30", 
+                  "name": "CEBDH730"
+                }
+              ], 
+              "data": {
+                "Status": "Present", 
+                "PeakUtilizationTx": 62195, 
+                "AverageCollision": 26, 
+                "AverageJabber": 3, 
+                "AverageCRCAlignError": 1, 
+                "AverageThroughPutTx": 1, 
+                "AverageDropEvents": 1, 
+                "StationId": "CEBDH16BEN DASH", 
+                "ZoneNetAddress": "10.157.0.0", 
+                "PeakUtilizationRx": 117298, 
+                "PhysicalAddress": "10.157.244.16", 
+                "type": "MWR", 
+                "AverageThroughPutRx": 79
+              }, 
+              "id": "16", 
+              "name": "CEBDH716"
+            }
+          ], 
+          "data": {
+            "Status": "Present", 
+            "PeakUtilizationTx": 91445, 
+            "AverageCollision": 25, 
+            "AverageJabber": 6, 
+            "AverageCRCAlignError": 3, 
+            "AverageThroughPutTx": 17, 
+            "AverageDropEvents": 11, 
+            "StationId": "CEBDH6BEN DASH", 
+            "ZoneNetAddress": "10.157.0.0", 
+            "PeakUtilizationRx": 130394, 
+            "PhysicalAddress": "10.157.244.6", 
+            "type": "MWR", 
+            "AverageThroughPutRx": 86
+          }, 
+          "id": "6", 
+          "name": "CEBDH76"
+        }, 
+        {
+          "children": [
+            {
+              "children": [], 
+              "data": {
+                "Status": "Present", 
+                "AverageRLTS1": 0, 
+                "AverageRLTS2": 0, 
+                "AverageAIS": 0, 
+                "AverageUAS": 1, 
+                "AverageSES": 0, 
+                "AverageRLTMMIN": -46, 
+                "StationId": "CE018BEN DASH", 
+                "ZoneNetAddress": "10.157.0.0", 
+                "PhysicalAddress": "10.157.244.18", 
+                "type": "RBS", 
+                "AverageES": 0, 
+                "AverageRLTMMAX": -44
+              }, 
+              "id": "18", 
+              "name": "CEBDH7018"
+            }
+          ], 
+          "data": {
+            "Status": "Present", 
+            "PeakUtilizationTx": 76504, 
+            "AverageCollision": 21, 
+            "AverageJabber": 0, 
+            "AverageCRCAlignError": 1, 
+            "AverageThroughPutTx": 143, 
+            "AverageDropEvents": 11, 
+            "StationId": "CEBDH8BEN DASH", 
+            "ZoneNetAddress": "10.157.0.0", 
+            "PeakUtilizationRx": 93174, 
+            "PhysicalAddress": "10.157.244.8", 
+            "type": "MWR", 
+            "AverageThroughPutRx": 20
+          }, 
+          "id": "8", 
+          "name": "CEBDH78"
+        }
+      ], 
+      "data": {
+        "Status": "Present", 
+        "PeakUtilizationTx": 83203, 
+        "AverageCollision": 5, 
+        "AverageJabber": 5, 
+        "AverageCRCAlignError": 6, 
+        "AverageThroughPutTx": 7, 
+        "AverageDropEvents": 12, 
+        "StationId": "CEBDH2BEN DASH", 
+        "ZoneNetAddress": "10.157.0.0", 
+        "PeakUtilizationRx": 135433, 
+        "PhysicalAddress": "10.157.244.2", 
+        "type": "MWR", 
+        "AverageThroughPutRx": 95
+      }, 
+      "id": "2", 
+      "name": "CEBDH72"
+    }, 
+    {
+      "children": [
+        {
+          "children": [
+            {
+              "children": [], 
+              "data": {
+                "Status": "Present", 
+                "AverageRLTS1": 1, 
+                "AverageRLTS2": 1, 
+                "AverageAIS": 1, 
+                "AverageUAS": 1, 
+                "AverageSES": 1, 
+                "AverageRLTMMIN": -49, 
+                "StationId": "CE020BEN DASH", 
+                "ZoneNetAddress": "10.157.0.0", 
+                "PhysicalAddress": "10.157.244.20", 
+                "type": "RBS", 
+                "AverageES": 1, 
+                "AverageRLTMMAX": -43
+              }, 
+              "id": "20", 
+              "name": "CEBDH7020"
+            }
+          ], 
+          "data": {
+            "Status": "Present", 
+            "PeakUtilizationTx": 76581, 
+            "AverageCollision": 39, 
+            "AverageJabber": 3, 
+            "AverageCRCAlignError": 2, 
+            "AverageThroughPutTx": 46, 
+            "AverageDropEvents": 6, 
+            "StationId": "CEBDH10BEN DASH", 
+            "ZoneNetAddress": "10.157.0.0", 
+            "PeakUtilizationRx": 131333, 
+            "PhysicalAddress": "10.157.244.10", 
+            "type": "MWR", 
+            "AverageThroughPutRx": 20
+          }, 
+          "id": "10", 
+          "name": "CEBDH710"
+        }, 
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [], 
+                      "data": {
+                        "Status": "Present", 
+                        "AverageRLTS1": 1, 
+                        "AverageRLTS2": 0, 
+                        "AverageAIS": 1, 
+                        "AverageUAS": 1, 
+                        "AverageSES": 1, 
+                        "AverageRLTMMIN": -47, 
+                        "StationId": "CE046BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PhysicalAddress": "10.157.244.46", 
+                        "type": "RBS", 
+                        "AverageES": 0, 
+                        "AverageRLTMMAX": -44
+                      }, 
+                      "id": "46", 
+                      "name": "CEBDH7046"
+                    }
+                  ], 
+                  "data": {
+                    "Status": "Present", 
+                    "PeakUtilizationTx": 70585, 
+                    "AverageCollision": 37, 
+                    "AverageJabber": 0, 
+                    "AverageCRCAlignError": 2, 
+                    "AverageThroughPutTx": 39, 
+                    "AverageDropEvents": 12, 
+                    "StationId": "CEBDH32BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PeakUtilizationRx": 117764, 
+                    "PhysicalAddress": "10.157.244.32", 
+                    "type": "MWR", 
+                    "AverageThroughPutRx": 32
+                  }, 
+                  "id": "32", 
+                  "name": "CEBDH732"
+                }, 
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [], 
+                          "data": {
+                            "Status": "Present", 
+                            "AverageRLTS1": 1, 
+                            "AverageRLTS2": 1, 
+                            "AverageAIS": 0, 
+                            "AverageUAS": 1, 
+                            "AverageSES": 0, 
+                            "AverageRLTMMIN": -47, 
+                            "StationId": "CE056BEN DASH", 
+                            "ZoneNetAddress": "10.157.0.0", 
+                            "PhysicalAddress": "10.157.244.56", 
+                            "type": "RBS", 
+                            "AverageES": 1, 
+                            "AverageRLTMMAX": -43
+                          }, 
+                          "id": "56", 
+                          "name": "CEBDH7056"
+                        }
+                      ], 
+                      "data": {
+                        "Status": "Present", 
+                        "PeakUtilizationTx": 63337, 
+                        "AverageCollision": 30, 
+                        "AverageJabber": 7, 
+                        "AverageCRCAlignError": 5, 
+                        "AverageThroughPutTx": 94, 
+                        "AverageDropEvents": 2, 
+                        "StationId": "CEBDH48BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PeakUtilizationRx": 81792, 
+                        "PhysicalAddress": "10.157.244.48", 
+                        "type": "MWR", 
+                        "AverageThroughPutRx": 147
+                      }, 
+                      "id": "48", 
+                      "name": "CEBDH748"
+                    }, 
+                    {
+                      "children": [
+                        {
+                          "children": [], 
+                          "data": {
+                            "Status": "Present", 
+                            "AverageRLTS1": 0, 
+                            "AverageRLTS2": 1, 
+                            "AverageAIS": 0, 
+                            "AverageUAS": 0, 
+                            "AverageSES": 1, 
+                            "AverageRLTMMIN": -49, 
+                            "StationId": "CE058BEN DASH", 
+                            "ZoneNetAddress": "10.157.0.0", 
+                            "PhysicalAddress": "10.157.244.58", 
+                            "type": "RBS", 
+                            "AverageES": 0, 
+                            "AverageRLTMMAX": -44
+                          }, 
+                          "id": "58", 
+                          "name": "CEBDH7058"
+                        }
+                      ], 
+                      "data": {
+                        "Status": "Present", 
+                        "PeakUtilizationTx": 89668, 
+                        "AverageCollision": 37, 
+                        "AverageJabber": 0, 
+                        "AverageCRCAlignError": 4, 
+                        "AverageThroughPutTx": 54, 
+                        "AverageDropEvents": 1, 
+                        "StationId": "CEBDH50BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PeakUtilizationRx": 113267, 
+                        "PhysicalAddress": "10.157.244.50", 
+                        "type": "MWR", 
+                        "AverageThroughPutRx": 58
+                      }, 
+                      "id": "50", 
+                      "name": "CEBDH750"
+                    }
+                  ], 
+                  "data": {
+                    "Status": "Present", 
+                    "PeakUtilizationTx": 78381, 
+                    "AverageCollision": 7, 
+                    "AverageJabber": 3, 
+                    "AverageCRCAlignError": 8, 
+                    "AverageThroughPutTx": 63, 
+                    "AverageDropEvents": 6, 
+                    "StationId": "CEBDH34BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PeakUtilizationRx": 31930, 
+                    "PhysicalAddress": "10.157.244.34", 
+                    "type": "MWR", 
+                    "AverageThroughPutRx": 99
+                  }, 
+                  "id": "34", 
+                  "name": "CEBDH734"
+                }
+              ], 
+              "data": {
+                "Status": "Present", 
+                "PeakUtilizationTx": 96806, 
+                "AverageCollision": 18, 
+                "AverageJabber": 6, 
+                "AverageCRCAlignError": 9, 
+                "AverageThroughPutTx": 56, 
+                "AverageDropEvents": 6, 
+                "StationId": "CEBDH22BEN DASH", 
+                "ZoneNetAddress": "10.157.0.0", 
+                "PeakUtilizationRx": 134372, 
+                "PhysicalAddress": "10.157.244.22", 
+                "type": "MWR", 
+                "AverageThroughPutRx": 87
+              }, 
+              "id": "22", 
+              "name": "CEBDH722"
+            }, 
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [], 
+                      "data": {
+                        "Status": "Present", 
+                        "AverageRLTS1": 0, 
+                        "AverageRLTS2": 0, 
+                        "AverageAIS": 1, 
+                        "AverageUAS": 0, 
+                        "AverageSES": 0, 
+                        "AverageRLTMMIN": -49, 
+                        "StationId": "CE052BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PhysicalAddress": "10.157.244.52", 
+                        "type": "RBS", 
+                        "AverageES": 0, 
+                        "AverageRLTMMAX": -42
+                      }, 
+                      "id": "52", 
+                      "name": "CEBDH7052"
+                    }
+                  ], 
+                  "data": {
+                    "Status": "Present", 
+                    "PeakUtilizationTx": 96562, 
+                    "AverageCollision": 23, 
+                    "AverageJabber": 8, 
+                    "AverageCRCAlignError": 6, 
+                    "AverageThroughPutTx": 37, 
+                    "AverageDropEvents": 3, 
+                    "StationId": "CEBDH36BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PeakUtilizationRx": 146982, 
+                    "PhysicalAddress": "10.157.244.36", 
+                    "type": "MWR", 
+                    "AverageThroughPutRx": 86
+                  }, 
+                  "id": "36", 
+                  "name": "CEBDH736"
+                }, 
+                {
+                  "children": [
+                    {
+                      "children": [], 
+                      "data": {
+                        "Status": "Present", 
+                        "AverageRLTS1": 1, 
+                        "AverageRLTS2": 1, 
+                        "AverageAIS": 1, 
+                        "AverageUAS": 1, 
+                        "AverageSES": 1, 
+                        "AverageRLTMMIN": -46, 
+                        "StationId": "CE054BEN DASH", 
+                        "ZoneNetAddress": "10.157.0.0", 
+                        "PhysicalAddress": "10.157.244.54", 
+                        "type": "RBS", 
+                        "AverageES": 1, 
+                        "AverageRLTMMAX": -42
+                      }, 
+                      "id": "54", 
+                      "name": "CEBDH7054"
+                    }
+                  ], 
+                  "data": {
+                    "Status": "Present", 
+                    "PeakUtilizationTx": 90011, 
+                    "AverageCollision": 23, 
+                    "AverageJabber": 6, 
+                    "AverageCRCAlignError": 9, 
+                    "AverageThroughPutTx": 58, 
+                    "AverageDropEvents": 3, 
+                    "StationId": "CEBDH38BEN DASH", 
+                    "ZoneNetAddress": "10.157.0.0", 
+                    "PeakUtilizationRx": 134147, 
+                    "PhysicalAddress": "10.157.244.38", 
+                    "type": "MWR", 
+                    "AverageThroughPutRx": 65
+                  }, 
+                  "id": "38", 
+                  "name": "CEBDH738"
+                }
+              ], 
+              "data": {
+                "Status": "Present", 
+                "PeakUtilizationTx": 56350, 
+                "AverageCollision": 5, 
+                "AverageJabber": 1, 
+                "AverageCRCAlignError": 5, 
+                "AverageThroughPutTx": 100, 
+                "AverageDropEvents": 14, 
+                "StationId": "CEBDH24BEN DASH", 
+                "ZoneNetAddress": "10.157.0.0", 
+                "PeakUtilizationRx": 65185, 
+                "PhysicalAddress": "10.157.244.24", 
+                "type": "MWR", 
+                "AverageThroughPutRx": 59
+              }, 
+              "id": "24", 
+              "name": "CEBDH724"
+            }
+          ], 
+          "data": {
+            "Status": "Present", 
+            "PeakUtilizationTx": 93610, 
+            "AverageCollision": 30, 
+            "AverageJabber": 2, 
+            "AverageCRCAlignError": 7, 
+            "AverageThroughPutTx": 142, 
+            "AverageDropEvents": 4, 
+            "StationId": "CEBDH12BEN DASH", 
+            "ZoneNetAddress": "10.157.0.0", 
+            "PeakUtilizationRx": 129235, 
+            "PhysicalAddress": "10.157.244.12", 
+            "type": "MWR", 
+            "AverageThroughPutRx": 146
+          }, 
+          "id": "12", 
+          "name": "CEBDH712"
+        }
+      ], 
+      "data": {
+        "Status": "Present", 
+        "PeakUtilizationTx": 79863, 
+        "AverageCollision": 8, 
+        "AverageJabber": 6, 
+        "AverageCRCAlignError": 1, 
+        "AverageThroughPutTx": 102, 
+        "AverageDropEvents": 13, 
+        "StationId": "CEBDH4BEN DASH", 
+        "ZoneNetAddress": "10.157.0.0", 
+        "PeakUtilizationRx": 121985, 
+        "PhysicalAddress": "10.157.244.4", 
+        "type": "MWR", 
+        "AverageThroughPutRx": 69
+      }, 
+      "id": "4", 
+      "name": "CEBDH74"
+    }
+  ], 
+  "data": {
+    "Status": "Present", 
+    "type": "router"
+  }, 
+  "id": "1", 
+  "name": "CEBDH701"
+}
