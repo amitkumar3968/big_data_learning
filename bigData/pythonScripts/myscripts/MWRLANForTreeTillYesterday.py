@@ -35,10 +35,8 @@ cmd_arguments = sys.argv
 cluster_ip = ["10.157.244.0"] 							# Cluster Name - /24 based network - each cluster can have atmost 254 nodes
 interface = ["LAN-1","LAN-2","LAN-3","LAN-4","Port-A"] 	# Interface information 
 
-start_date = date(2013, 3, 1)
-end_date = date(datetime.datetime.now().date().year, 
-				datetime.datetime.now().date().month, 
-				datetime.datetime.now().date().day - 1) 	# End date yyyy,mm,dd - yesterday's data
+start_date = date(2013, 6, 6)
+end_date = date(2013, 6, 6)
 frequency = 900											# Data collection frequency in Seconds (900 == 15 minutes)
 day_in_seconds = 86400
 day_9_45_am = 35100 
