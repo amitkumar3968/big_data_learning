@@ -2,10 +2,20 @@
 #  will be in CAPs Letters 
 # 
 
+#
+# Text Formating
+#
+
+BOLD="\033[1m";
+NORM="\033[0m";
+RED_F="\033[31m"; RED_B="\033[41m"
+
+
 # ************************************************** # 
 #    Creating Table for Date Based lookup Table      #
 # ************************************************** # 
 
+echo -e "${BOLD}${RED_F} Creating DATE_TABLE ${NORM}"
 echo "create 'DATE_TABLE','DATE_BASED_LOOKUP'" | hbase shell 
 
 # All Column Qualifier in the above table will be prefixed with "ALL_"
@@ -27,7 +37,7 @@ echo "create 'DATE_TABLE','DATE_BASED_LOOKUP'" | hbase shell
 #    Creating Table for Area Based lookup Table      #
 # ************************************************** #  
  
-
+echo -e "${BOLD}${RED_F} Creating AREA_TABLE ${NORM}"
 echo "create 'AREA_TABLE', 'AREA_BASED_LOOKUP'" | hbase shell 
 
 # All Column Qualifier in the above table will be prefixed with "AREA_"
@@ -49,7 +59,7 @@ echo "create 'AREA_TABLE', 'AREA_BASED_LOOKUP'" | hbase shell
 #    Creating Table for Node Information             #
 # ************************************************** #  
 
-
+echo -e "${BOLD}${RED_F} Creating NODE_TABLE ${NORM}"
 echo "create 'NODE_TABLE','NODE_INFORMATION'" | hbase shell 
 
 # All Data related to node is stored in this table. Prefix with "NODE_"
@@ -81,6 +91,7 @@ echo "create 'NODE_TABLE','NODE_INFORMATION'" | hbase shell
 #    Creating Table for RBS RNC Information          #
 # ************************************************** #  
 
+echo -e "${BOLD}${RED_F} Creating RBS_RNC_TABLE ${NORM}"
 echo "create 'RBS_RNC_TABLE','RBS_RNC_DETAILS'" | hbase shell 
 
 # All Data related to RBS RNC path is stored in this table. Prefix with "RBS_RNC_"
@@ -102,6 +113,7 @@ echo "create 'RBS_RNC_TABLE','RBS_RNC_DETAILS'" | hbase shell
 #    Creating Table for PWE Information              #
 # ************************************************** #  
 
+echo -e "${BOLD}${RED_F} Creating PWE_TABLE ${NORM}"
 echo "create 'PWE_TABLE','PWE_DETAILS'" | hbase shell 
 
 # All Data related to PWE is stored in this table. Prefix with "PWE_"
@@ -121,6 +133,7 @@ echo "create 'PWE_TABLE','PWE_DETAILS'" | hbase shell
 #    Creating Table for LSP Information              #
 # ************************************************** #  
 
+echo -e "${BOLD}${RED_F} Creating LSP_TABLE ${NORM}"
 echo "create 'LSP_TABLE','LSP_DETAILS'" | hbase shell 
 
 # All Data related to LSP is stored in this table. Prefix with "LSP_"
@@ -138,9 +151,10 @@ echo "create 'LSP_TABLE','LSP_DETAILS'" | hbase shell
 
 
 # ************************************************** # 
-#    Creating Table for VRF_TABLE Information              #
+#    Creating Table for VRF_TABLE Information        #
 # ************************************************** #  
 
+echo -e "${BOLD}${RED_F} Creating VRF_TABLE ${NORM}"
 echo "create 'VRF_TABLE','VRF_DETAILS'" | hbase shell 
 
 # All Data related to VRF is stored in this table. Prefix with "VRF_"
@@ -158,9 +172,10 @@ echo "create 'VRF_TABLE','VRF_DETAILS'" | hbase shell
 
 
 # ************************************************** # 
-#    Creating Table for RNC_TABLE Information              #
+#    Creating Table for RNC_TABLE Information        #
 # ************************************************** #  
 
+echo -e "${BOLD}${RED_F} Creating RNC_TABLE ${NORM}"
 echo "create 'RNC_TABLE','RNC_DETAILS'" | hbase shell 
 
 # All Data related to RNC is stored in this table. Prefix with "RNC_"
@@ -177,9 +192,10 @@ echo "create 'RNC_TABLE','RNC_DETAILS'" | hbase shell
 
 
 # ************************************************** # 
-#    Creating Table for TUNNEL_TABLE Information              #
+#    Creating Table for TUNNEL_TABLE Information     #
 # ************************************************** #  
 
+echo -e "${BOLD}${RED_F} Creating TUNNEL_TABLE ${NORM}"
 echo "create 'TUNNEL_TABLE','TUNNEL_DETAILS'" | hbase shell 
 
 # All Data related to TUNNEL_ is stored in this table. Prefix with "TUNNEL_"
@@ -196,9 +212,9 @@ echo "create 'TUNNEL_TABLE','TUNNEL_DETAILS'" | hbase shell
 
 
 # ************************************************** # 
-#    Creating Table for TRUNK_TABLE Information              #
+#    Creating Table for TRUNK_TABLE Information      #
 # ************************************************** #  
-
+echo -e "${BOLD}${RED_F} Creating TRUNK_TABLE ${NORM}"
 echo "create 'TRUNK_TABLE','TRUNK_DETAILS'" | hbase shell 
 
 # All Data related to TRUNK_ is stored in this table. Prefix with "TRUNK_"
@@ -214,7 +230,11 @@ echo "create 'TRUNK_TABLE','TRUNK_DETAILS'" | hbase shell
 # TRUNK_*
 
 
-
+# ************************************************** # 
+#    				PRINTING DATA 					 #
+# ************************************************** #  
+echo -e "${BOLD}${RED_F} PRINTING TABLE Information in Hbase ${NORM}"
+echo "list" | hbase shell 
 
 
 
