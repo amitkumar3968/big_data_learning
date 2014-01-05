@@ -37,7 +37,7 @@ exportHbaseTables()
     echo -e "${NORM}"
     echo -e "${BOLD}${RED_F}Backup Location on HDFS : hadoop fs -ls $2/ ${NORM}"
 
-    echo -e "Files can be found in Location : $2/"$1"*$3* " | `mailx -v -A gmail -s "HBASE backup Completed : Did a $backupType Backup " 'zubair.ahmed@saggezza.com'`
+    echo -e "Files can be found in Location : $2/"$1"*$3* " | `mailx -v -A gmail -s "HBASE backup Completed : Did a $backupType Backup " 'zubair.ahmed@me.com'`
 }
 
 importHbaseTables()
@@ -48,7 +48,7 @@ importHbaseTables()
     $IMPORT_CMD "$1" $2/"$1"_$3
 
     echo -e "${BOLD}${RED_F}Import Complete ... ${NORM}"
-    echo -e "Files which were imported are in Location : $2/"$1"*$3* " | `mailx -v -A gmail -s "HBASE Import Completed : Did a $backupType Import " 'zubair.ahmed@saggezza.com'`
+    echo -e "Files which were imported are in Location : $2/"$1"*$3* " | `mailx -v -A gmail -s "HBASE Import Completed : Did a $backupType Import " 'zubair.ahmed@me.com'`
 }
 
 # Do we want to Import or Export
@@ -102,9 +102,9 @@ elif [ $backupType == "COMPLETE_BACKUP_ALL_VERSIONS" ];
 then
     # Complete backup for all versions
     echo -e "${BOLD}${RED_F}HBASE BACKUP : Starting COMPLETE_BACKUP_ALL_VERSIONS ${NORM}\n"
-    backupStartTimestamp="2147483647"
-    backupEndTimestamp="-2147483648"
-    versionNumber="$(date +%s)000"
+    versionNumber="2147483647"
+    backupStartTimestamp="-2147483648"
+    backupEndTimestamp="$(date +%s)000"
 else
     echo -e "${BOLD}${RED_F}Enter Correct Parameter ${NORM}"
     exit
