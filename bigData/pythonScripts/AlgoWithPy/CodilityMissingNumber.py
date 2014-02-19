@@ -4,8 +4,6 @@ def solution(A):
     if len(A) != 0:
         totalValue = sum(A)
         totalIndex = sum(range(1, len(A)+1))
-        print totalIndex
-        print totalValue
         if totalIndex == totalValue:
             return max(A) + 1
         else:
@@ -15,4 +13,4 @@ def solution(A):
         return 1
 
 
-print solution([1,3])
+print solution([1,4,3,5,6,7,8,9,10])
