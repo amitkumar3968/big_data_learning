@@ -15,13 +15,13 @@ decimalLimit=5
 ERROR = 999999
 THRESHOLD = 85
 
-def emailSubjectMessage(currentStatus, memoryInformation, serverName):
-    subjectAndMailing = "| mailx -v -A gmail -s \"STATUS : "+currentStatus+" - Server Name : "+serverName+", Heap Memory @ "+memoryInformation+"\" zubair.ahmed@saggezza.com"
+def emailSubjectMessageDetailed(currentStatus, memoryInformation, serverName):
+    subjectAndMailing = "| mailx -v -A gmail -s \"STATUS : "+currentStatus+" - Server Name : "+serverName+", Used Heap Memory @ "+memoryInformation+"\" zubair.ahmed@saggezza.com"
     return subjectAndMailing
 
 
-def emailSubjectMessage():
-    subjectAndMailing = "| mailx -v -A gmail -s \"Datanode (DN) Monitoring Service. Current Time : $(date +%H:%M)\" zubair.ahmed@saggezza.com"
+def emailSubjectMessage(serviceType):
+    subjectAndMailing = "| mailx -v -A gmail -s \""+serviceType+" Monitoring Service. Current Time : $(date +%H:%M)\" zubair.ahmed@saggezza.com"
     return subjectAndMailing
 
 
@@ -37,6 +37,21 @@ def emailBodyMessage(memoryDic):
 
     return bodyMessage
 
+def emailBodyMessageDetailed(memoryDic, memMeasure):
+
+    bodyMessage = ""
+    for dataListOfDictionary in memoryDic:
+        if not dataListOfDictionary == {}:
+            bodyMessage = bodyMessage + "\"Server Name: " + dataListOfDictionary['serverUrl'] + "\\n" \
+                        "Node Status : " + dataListOfDictionary['nodeStatus'] +"\\n"\
+                        "Used Heap Memory (%) : " + dataListOfDictionary['usedHeapPercentage'] +"\\n"\
+                        "Committed Heap Memory (%) : " + dataListOfDictionary['committedHeapPercentage'] +"\\n\\n"\
+                        "Used Heap Memory : " + dataListOfDictionary['usedHeap'] +" "+memMeasure+"\\n"\
+                        "Committed Heap Memory : " + dataListOfDictionary['committedHeap']+" "+memMeasure +"\\n"\
+                        "Max Heap Memory : " + dataListOfDictionary['maxHeap']+" "+memMeasure +"\\n"\
+                        "Init Heap Memory : " + dataListOfDictionary['initHeap']+" "+memMeasure +"\\n\\n\""
+
+    return bodyMessage
 
 
 def emailBodyFooter(aboutInfo):
@@ -65,6 +80,7 @@ def commandExecutor(command):
 # Get data from URL - JSON in our case.
 def gettingDataFromURL(URL, heapMemoryIndex):
 
+    # Exit Conditions
     if heapMemoryIndex < 0:
         print ("Enter Valid heapMemoryIndex, "
                "should be a number and should be 0 or above")
@@ -73,6 +89,7 @@ def gettingDataFromURL(URL, heapMemoryIndex):
     if URL == "":
         print("Please pass valid URL")
         return ERROR
+
     # Creating a Dictionary to hold all our data
     # Currently hold only Heap Memory
     heapDataDictionary = dict()
@@ -115,6 +132,7 @@ def gettingDataFromURL(URL, heapMemoryIndex):
     return heapDataDictionary
 
 
+# This function converts the servername to URL which we need to query.
 def urlFromInput(serverName, listenPort):
 
     if listenPort < 0:
@@ -127,35 +145,125 @@ def urlFromInput(serverName, listenPort):
         return ERROR
 
     URL = "http://"+serverName+":"+str(listenPort)+"/jmx"
-    print(URL)
     return URL
 
 
 if __name__=="__main__":
 
+    # List of Nodes to Query
     serverList = ["prod-data1", "prod-data2", "prod-data3", "prod-data4", "prod-data5",
                   "prod-data6", "prod-data7", "prod-data8", "prod-data9", "prod-data10"]
 
-    #serverList = ["prod-data1", "prod-data2"]
 
-    portToQuery = 50075
-    indexToQuery = 0
+    #############
+    # DATANODE
+    #############
 
-    dataListOfDictionary = []
+    # Port which we need to query and
+    # Index information on the JSON whic has the Heap Memory information
+    portToQueryDataNode = 50075
+    indexToQueryDataNode = 0
 
+    # Dict to store all data.
+    dataNodeListDictionary = []
+
+    # Running through the list to create dictionary of information.
     for serverName in serverList:
-        getUrl = urlFromInput(serverName, portToQuery)
+        getUrl = urlFromInput(serverName, portToQueryDataNode)
         if getUrl == ERROR:
-            break
-        heapDictionary = gettingDataFromURL(getUrl, indexToQuery)
+            continue
+        heapDictionary = gettingDataFromURL(getUrl, indexToQueryDataNode)
         if heapDictionary == ERROR:
-            break
-        dataListOfDictionary.append(heapDictionary)
+            continue
+        dataNodeListDictionary.append(heapDictionary)
 
-    headerEmailBody = emailBodyHeader("Datanode (DN)")
-    footerEmailBody = emailBodyFooter("Datanode (DN)")
-    subjectEmail = emailSubjectMessage()
-    mainMessageEmailBody = emailBodyMessage(dataListOfDictionary)
+    if not dataNodeListDictionary == []:
+        # Setting up Email Processing
+        headerEmailBody = emailBodyHeader("Datanode (DN)")
+        footerEmailBody = emailBodyFooter("Datanode (DN)")
+        subjectEmail = emailSubjectMessage("Datanode (DN)")
+        mainMessageEmailBody = emailBodyMessage(dataNodeListDictionary)
 
-    # Execute command to send all information as a mail
-    commandExecutor(headerEmailBody + mainMessageEmailBody + footerEmailBody + subjectEmail)
+        # Execute command to send all information as a mail
+        print(headerEmailBody + mainMessageEmailBody + footerEmailBody + subjectEmail)
+    else:
+        print "ERROR : Dictionary is Empty!!"
+
+    #############
+    # REGION SERVER
+    #############
+
+    # Port which we need to query and
+    # Index information on the JSON whic has the Heap Memory information
+    portToQueryRegionServer = 60030
+    indexToQueryRegionServer = 1
+
+    # Dict to store all data.
+    regionServerListDictionary = []
+
+    # Running through the list to create dictionary of information.
+    for serverName in serverList:
+        getUrl = urlFromInput(serverName, portToQueryRegionServer)
+        if getUrl == ERROR:
+            continue
+        heapDictionary = gettingDataFromURL(getUrl, indexToQueryRegionServer)
+        if heapDictionary == ERROR:
+            continue
+        regionServerListDictionary.append(heapDictionary)
+
+    if not regionServerListDictionary == []:
+        # Setting up Email Processing
+        headerEmailBody = emailBodyHeader("HBase RegionServer")
+        footerEmailBody = emailBodyFooter("Hbase RegionServer")
+        subjectEmail = emailSubjectMessage("Hbase RegionServer")
+        mainMessageEmailBody = emailBodyMessage(regionServerListDictionary)
+
+        # Execute command to send all information as a mail
+        print(headerEmailBody + mainMessageEmailBody + footerEmailBody + subjectEmail)
+    else:
+        print "ERROR : Dictionary is Empty!!"
+
+
+    #############
+    # HBASE MASTER
+    #############
+
+    # Port which we need to query and
+    # Index information on the JSON whic has the Heap Memory information
+    hbaseMaster = ["prod-master1"]
+    portToQueryHbaseMaster = 60010
+    indexToQueryHbaseMaster = 1
+
+    # Dict to store all data.
+    hbaseMasterListDictionary = []
+
+    # Running through the list to create dictionary of information.
+    for serverName in hbaseMaster:
+        getUrl = urlFromInput(serverName, portToQueryHbaseMaster)
+        if getUrl == ERROR:
+            continue
+        heapDictionary = gettingDataFromURL(getUrl, indexToQueryHbaseMaster)
+        if heapDictionary == ERROR:
+            continue
+        hbaseMasterListDictionary.append(heapDictionary)
+
+    if not hbaseMasterListDictionary == []:
+        # Setting up Email Processing
+        headerEmailBody = emailBodyHeader("Hbase Master")
+        footerEmailBody = emailBodyFooter("Hbase Master")
+
+        # As we have only one dictionary information we just assign it to Subject.
+        for indexHbaseDictionary in hbaseMasterListDictionary:
+            if not indexHbaseDictionary == {}:
+                subjectEmail = emailSubjectMessageDetailed(indexHbaseDictionary['nodeStatus'],
+                                           indexHbaseDictionary['usedHeapPercentage'],
+                                           "HBase Master")
+            else:
+                subjectEmail = emailSubjectMessage("Hbase Master")
+
+        mainMessageEmailBody = emailBodyMessageDetailed(hbaseMasterListDictionary, "GB")
+
+        # Execute command to send all information as a mail
+        print(headerEmailBody + mainMessageEmailBody + footerEmailBody + subjectEmail)
+    else:
+        print "ERROR : Dictionary is Empty!!"
